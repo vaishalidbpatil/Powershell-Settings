@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- *******************************************************************
+Mongo Provider Type extensions
+Copyright (c) 2011 Code Owls LLC.  All rights reserved.
+ 
+******************************************************************** -->
+<Types>
+  <Type>
+    <Name>MongoDB.Document</Name>
+    <Members>
+      <AliasProperty>
+        <Name>Path</Name>
+        <ReferencedMemberName>PSPath</ReferencedMemberName>
+      </AliasProperty>
+      <AliasProperty>
+        <Name>Name</Name>
+        <ReferencedMemberName>PSChildName</ReferencedMemberName>
+      </AliasProperty>
+    </Members>
+  </Type>
+  <Type>
+    <Name>MongoDB.MongoCollection</Name>
+    <Members>
+      <AliasProperty>
+        <Name>Path</Name>
+        <ReferencedMemberName>PSPath</ReferencedMemberName>
+      </AliasProperty>
+      <AliasProperty>
+        <Name>Name</Name>
+        <ReferencedMemberName>PSChildName</ReferencedMemberName>
+      </AliasProperty>
+    </Members>
+  </Type>
+  <Type>
+    <Name>MongoDB.MongoDatabase</Name>
+    <Members>
+      <AliasProperty>
+        <Name>Path</Name>
+        <ReferencedMemberName>PSPath</ReferencedMemberName>
+      </AliasProperty>
+      <AliasProperty>
+        <Name>Name</Name>
+        <ReferencedMemberName>PSChildName</ReferencedMemberName>
+      </AliasProperty>
+    </Members>
+  </Type>
+
+  <Type>
+    <Name>CodeOwls.MongoProvider.PSDocumentObject</Name>
+    <Members>
+      <AliasProperty>
+        <Name>Path</Name>
+        <ReferencedMemberName>PSPath</ReferencedMemberName>
+      </AliasProperty>
+      <AliasProperty>
+        <Name>Name</Name>
+        <ReferencedMemberName>PSChildName</ReferencedMemberName>
+      </AliasProperty>
+    </Members>
+  </Type>
+  <Type>
+    <Name>CodeOwls.MongoProvider.PSCollectionIndexDocumentObject</Name>
+    <Members>
+      <AliasProperty>
+        <Name>Path</Name>
+        <ReferencedMemberName>PSPath</ReferencedMemberName>
+      </AliasProperty>
+      <AliasProperty>
+        <Name>Name</Name>
+        <ReferencedMemberName>PSChildName</ReferencedMemberName>
+      </AliasProperty>
+    </Members>
+  </Type>
+  <Type>
+    <Name>CodeOwls.MongoProvider.PSDatabaseUserDocumentObject</Name>
+    <Members>
+      <AliasProperty>
+        <Name>Path</Name>
+        <ReferencedMemberName>PSPath</ReferencedMemberName>
+      </AliasProperty>
+      <AliasProperty>
+        <Name>Name</Name>
+        <ReferencedMemberName>PSChildName</ReferencedMemberName>
+      </AliasProperty>
+    </Members>
+  </Type>
+
+</Types>

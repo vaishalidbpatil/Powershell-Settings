@@ -1,0 +1,47 @@
+﻿TOPIC
+    about_Mongo_Version
+
+SYNOPSIS
+	0.1 Prerelease Alpha
+
+VERSION
+	You are running the "0.1 Prerelease Alpha" version of the 
+	MongoDB Provider
+	
+CHANGE LOG
+  Description
+    The changelog documents the changes placed in each release of 
+	the MongoDB Provider.  Each item is identified by its codeplex 
+	work item number(s) if available.
+
+0.1 Prerelease Alpha 
+  Initial Release supporting:
+    * mounting mongodb servers as drives
+    * get-childitem, new-item, remove-item, get-item:
+        - databases
+        - collections
+        - users
+        - indexes
+        - documents
+    * set-item 
+        - documents
+    * native javascript filtering
+        - via -filter parameter of get-item, get-childitems      
+    * document filtering
+        - via -find parameter of get-item, get-childitems
+    * limit and skip on get-childitems cursor
+        - via -skip and -take parameters of get-item, get-childitems
+    * document field subsets
+        - via -fields parameter of get-item, get-childitems
+    * raw document retrieval
+        - via -asDocument parameter of get-item, get-childitems
+    * simple psobject <-> document conversion
+    * hashtable -> document conversion
+    * collection -> document field list conversion   
+      
+
+SEE ALSO
+    http://mosh.codeplex.com
+    Mongo
+    about_Mongo
+

@@ -1,0 +1,2132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<helpItems xmlns="http://msh" schema="maml">
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+<command:details>
+<command:name>Connect-Mdbc</command:name>
+<maml:description>
+<maml:para>Connects a server, database, and collection.</maml:para>
+</maml:description>
+<command:verb>Connect</command:verb>
+<command:noun>Mdbc</command:noun>
+</command:details>
+<maml:description>
+<maml:para>The cmdlet connects the specified server, database, and collection and creates their reference variables in the current scope, with default names they are $Server, $Database, and $Collection.
+
+The * used as a name tells to get all database names for a server or collection names for a database.</maml:para>
+</maml:description>
+<command:syntax>
+<command:syntaxItem>
+<maml:name>Connect-Mdbc</maml:name>
+<command:parameter required="true" position="1" >
+<maml:name>ConnectionString</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="2" >
+<maml:name>DatabaseName</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="3" >
+<maml:name>CollectionName</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>CollectionVariable</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>DatabaseVariable</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>ServerVariable</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>NewCollection</maml:name>
+</command:parameter>
+</command:syntaxItem>
+</command:syntax>
+<command:parameters>
+<command:parameter required="true" position="1" >
+<maml:name>ConnectionString</maml:name>
+<maml:description>
+<maml:para>Connection string (see the C# driver manual for details):
+mongodb://[username:password@]hostname[:port][/[database][?options]]
+&quot;.&quot; is used for the default C# driver connection.
+Examples:
+mongodb://localhost:27017</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="2" >
+<maml:name>DatabaseName</maml:name>
+<maml:description>
+<maml:para>Database name. * is used in order to get all database objects.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="3" >
+<maml:name>CollectionName</maml:name>
+<maml:description>
+<maml:para>Collection name. * is used in order to get all collection objects.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>CollectionVariable</maml:name>
+<maml:description>
+<maml:para>Name of a new variable in the current scope with the connected collection. The default variable is $Collection.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>DatabaseVariable</maml:name>
+<maml:description>
+<maml:para>Name of a new variable in the current scope with the connected database. The default variable is $Database.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>NewCollection</maml:name>
+<maml:description>
+<maml:para>Tells to connect a new collection dropping the existing if there is any.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>ServerVariable</maml:name>
+<maml:description>
+<maml:para>Name of a new variable in the current scope with the connected server. The default variable is $Server.</maml:para>
+</maml:description>
+</command:parameter>
+</command:parameters>
+<command:inputTypes>
+<command:inputType>
+<dev:type>
+<maml:name>-</maml:name>
+</dev:type>
+</command:inputType>
+</command:inputTypes>
+<command:returnValues>
+<command:returnValue>
+<dev:type>
+<maml:name>None or database or collection names.</maml:name>
+</dev:type>
+</command:returnValue>
+</command:returnValues>
+<command:examples>
+<command:example>
+<maml:title>-------------------------- EXAMPLE 1 --------------------------</maml:title>
+<dev:code># Connect to a new collection (drop existing)
+Import-Module Mdbc
+Connect-Mdbc . test test -NewCollection</dev:code>
+</command:example>
+<command:example>
+<maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
+<dev:code># Connect to the database
+Import-Module Mdbc
+Connect-Mdbc . test
+
+# Then get collections
+$collection1 = $Database.GetCollection(&apos;test&apos;)
+$collection2 = $Database.GetCollection(&apos;process&apos;)</dev:code>
+</command:example>
+<command:example>
+<maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
+<dev:code># Connect to the server
+Import-Module Mdbc
+Connect-Mdbc mongodb://localhost
+
+# Then get the database
+$Database = $Server.GetDatabase(&apos;test&apos;)</dev:code>
+</command:example>
+<command:example>
+<maml:title>-------------------------- EXAMPLE 4 --------------------------</maml:title>
+<dev:code># Connect to the default server and get all databases
+Import-Module Mdbc
+Connect-Mdbc . *</dev:code>
+</command:example>
+<command:example>
+<maml:title>-------------------------- EXAMPLE 5 --------------------------</maml:title>
+<dev:code># Connect to the database &apos;test&apos; and get all its collections
+Import-Module Mdbc
+Connect-Mdbc . test *</dev:code>
+</command:example>
+</command:examples>
+<maml:relatedLinks>
+<maml:navigationLink>
+<maml:linkText>Add-MdbcData</maml:linkText>
+</maml:navigationLink>
+<maml:navigationLink>
+<maml:linkText>Get-MdbcData</maml:linkText>
+</maml:navigationLink>
+<maml:navigationLink>
+<maml:linkText>Remove-MdbcData</maml:linkText>
+</maml:navigationLink>
+<maml:navigationLink>
+<maml:linkText>Update-MdbcData</maml:linkText>
+</maml:navigationLink>
+<maml:navigationLink>
+<maml:linkText>MongoDB</maml:linkText>
+<maml:uri>http://www.mongodb.org/</maml:uri>
+</maml:navigationLink>
+<maml:navigationLink>
+<maml:linkText>C# driver</maml:linkText>
+<maml:uri>http://www.mongodb.org/display/DOCS/CSharp+Driver+Tutorial</maml:uri>
+</maml:navigationLink>
+</maml:relatedLinks>
+</command:command>
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+<command:details>
+<command:name>New-MdbcData</command:name>
+<maml:description>
+<maml:para>Creates data documents and some other C# driver types.</maml:para>
+</maml:description>
+<command:verb>New</command:verb>
+<command:noun>MdbcData</command:noun>
+</command:details>
+<maml:description>
+<maml:para>This command is mostly used in order to create documents to be stored in the database. Without input objects it creates PowerShell friendly wrappers of C# driver documents.</maml:para>
+</maml:description>
+<command:syntax>
+<command:syntaxItem>
+<maml:name>New-MdbcData</maml:name>
+<command:parameter required="false" position="1" >
+<maml:name>InputObject</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Id</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Property</maml:name>
+<command:parameterValue required="true">String[]</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>NewId</maml:name>
+</command:parameter>
+</command:syntaxItem>
+</command:syntax>
+<command:parameters>
+<command:parameter required="false" pipelineInput="true (ByValue)" position="1" >
+<maml:name>InputObject</maml:name>
+<maml:description>
+<maml:para>.NET value to be converted to its BSON analogue.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" pipelineInput="true (ByPropertyName)" position="named" >
+<maml:name>Id</maml:name>
+<maml:description>
+<maml:para>Sets the document _id to the specified value. It makes sense when a document is being created.
+
+With pipeline input it can be a script block that returns an ID value. If this ID is an existing property/key value then the Select list should be specified. Otherwise the same value is included twice as the document ID and the property/key value.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>NewId</maml:name>
+<maml:description>
+<maml:para>Tells to generate and set a new document _id. It makes sense when a document is being created.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Property</maml:name>
+<maml:description>
+<maml:para>Property or key names which values are to be included into new documents. This parameter is used when input objects are converted into documents (see examples).</maml:para>
+</maml:description>
+</command:parameter>
+</command:parameters>
+<command:inputTypes>
+<command:inputType>
+<dev:type>
+<maml:name>$null, [PSCustomObject], [Hashtable] (any dictionary, in fact)</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>[Mdbc.Dictionary] document is created (BsonDocument helper). The created document is empty if the input object is $null or empty. Otherwise the document has the same fields and values as the input properties/keys and values.</maml:para>
+</maml:description>
+</command:inputType>
+<command:inputType>
+<dev:type>
+<maml:name>[System.Collections.IEnumerable]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>Mdbc array is created (BsonArray helper).</maml:para>
+</maml:description>
+</command:inputType>
+<command:inputType>
+<dev:type>
+<maml:name>[bool]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>is converted to BsonBoolean.</maml:para>
+</maml:description>
+</command:inputType>
+<command:inputType>
+<dev:type>
+<maml:name>[DateTime]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>is converted to BsonDateTime.</maml:para>
+</maml:description>
+</command:inputType>
+<command:inputType>
+<dev:type>
+<maml:name>[double]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>is converted to BsonDouble.</maml:para>
+</maml:description>
+</command:inputType>
+<command:inputType>
+<dev:type>
+<maml:name>[Guid]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>is converted to BsonBinaryData (and retrieved back as [Guid].</maml:para>
+</maml:description>
+</command:inputType>
+<command:inputType>
+<dev:type>
+<maml:name>[int]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>is converted to BsonInt32.</maml:para>
+</maml:description>
+</command:inputType>
+<command:inputType>
+<dev:type>
+<maml:name>[long]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>is converted to BsonInt64.</maml:para>
+</maml:description>
+</command:inputType>
+<command:inputType>
+<dev:type>
+<maml:name>[string]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>is converted to BsonString.</maml:para>
+</maml:description>
+</command:inputType>
+</command:inputTypes>
+<command:returnValues>
+<command:returnValue>
+<dev:type>
+<maml:name>[Mdbc.Dictionary]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>PowerShell friendly wrapper of BsonDocument.</maml:para>
+</maml:description>
+</command:returnValue>
+<command:returnValue>
+<dev:type>
+<maml:name>[Mdbc.Collection]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>PowerShell friendly wrapper of BsonArray.</maml:para>
+</maml:description>
+</command:returnValue>
+<command:returnValue>
+<dev:type>
+<maml:name>[MongoDB.Bson.BsonValue]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>Other BsonValue types created from input objects.</maml:para>
+</maml:description>
+</command:returnValue>
+</command:returnValues>
+<command:examples>
+<command:example>
+<maml:title>-------------------------- EXAMPLE 1 --------------------------</maml:title>
+<dev:code># Connect to the collection
+Import-Module Mdbc
+Connect-Mdbc . test test -NewCollection
+
+# Create a new document, set some data
+$data = New-MdbcData -Id 12345
+$data.Text = &apos;Hello world&apos;
+$data.Date = Get-Date
+
+# Add the document to the database
+$data | Add-MdbcData
+
+# Query the document from the database
+$result = Get-MdbcData (New-MdbcQuery _id 12345)
+$result</dev:code>
+</command:example>
+<command:example>
+<maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
+<dev:code># Connect to the collection
+Import-Module Mdbc
+Connect-Mdbc . test test -NewCollection
+
+# Create data from input objects and add to the database
+Get-Process mongod |
+New-MdbcData -Id {$_.Id} -Property Name, WorkingSet, StartTime |
+Add-MdbcData
+
+# Query the data
+$result = Get-MdbcData
+$result</dev:code>
+</command:example>
+</command:examples>
+<maml:relatedLinks>
+<maml:navigationLink>
+<maml:linkText>Add-MdbcData</maml:linkText>
+</maml:navigationLink>
+</maml:relatedLinks>
+</command:command>
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+<command:details>
+<command:name>New-MdbcQuery</command:name>
+<maml:description>
+<maml:para>Creates queries for Get-MdbcData, Remove-MdbcData, and Update-MdbcData.</maml:para>
+</maml:description>
+<command:verb>New</command:verb>
+<command:noun>MdbcQuery</command:noun>
+</command:details>
+<maml:description>
+<maml:para>Creates queries for Get-MdbcData, Remove-MdbcData, and Update-MdbcData.</maml:para>
+<maml:para></maml:para>
+<maml:para>&gt; New-MdbcQuery [-Where]</maml:para>
+<maml:para>{ $where: &quot;this.a &gt; 3&quot; }</maml:para>
+<maml:para>The database evaluates JavaScript expression for each object scanned. When the result is true, the object is returned in the query results.</maml:para>
+<maml:para>JavaScript executes more slowly than the native operators but is very flexible. See the server-side processing page for more information (official site).</maml:para>
+</maml:description>
+<command:syntax>
+<command:syntaxItem>
+<maml:name>New-MdbcQuery</maml:name>
+<command:parameter required="true" position="named" >
+<maml:name>And</maml:name>
+<command:parameterValue required="true">Object[]</command:parameterValue>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>New-MdbcQuery</maml:name>
+<command:parameter required="true" position="named" >
+<maml:name>Or</maml:name>
+<command:parameterValue required="true">Object[]</command:parameterValue>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>New-MdbcQuery</maml:name>
+<command:parameter required="false" position="named" >
+<maml:name>Where</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>New-MdbcQuery</maml:name>
+<command:parameter required="false" position="1" >
+<maml:name>Name</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="2" >
+<maml:name>EQ</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>New-MdbcQuery</maml:name>
+<command:parameter required="false" position="1" >
+<maml:name>Name</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>IEQ</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>New-MdbcQuery</maml:name>
+<command:parameter required="false" position="1" >
+<maml:name>Name</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>INE</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>New-MdbcQuery</maml:name>
+<command:parameter required="false" position="1" >
+<maml:name>Name</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Match</maml:name>
+<command:parameterValue required="true">PSObject[]</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Not</maml:name>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>New-MdbcQuery</maml:name>
+<command:parameter required="false" position="1" >
+<maml:name>Name</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>All</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Exists</maml:name>
+<command:parameterValue required="true">Boolean</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>GE</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>GT</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>In</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>LE</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>LT</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Matches</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Mod</maml:name>
+<command:parameterValue required="true">Int32[]</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>NE</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>NotIn</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Size</maml:name>
+<command:parameterValue required="true">Int32</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Type</maml:name>
+<command:parameterValue required="true">BsonType</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Not</maml:name>
+</command:parameter>
+</command:syntaxItem>
+</command:syntax>
+<command:parameters>
+<command:parameter required="false" position="1" >
+<maml:name>Name</maml:name>
+<maml:description>
+<maml:para>Field name.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="2" >
+<maml:name>EQ</maml:name>
+<maml:description>
+<maml:para>Equality test. Parameter name is optional. Parameter value can be null. It is not combined with other query tests.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>All</maml:name>
+<maml:description>
+<maml:para>Checks if all the field values are in the specified set (MongoDB $all).</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="true" position="named" >
+<maml:name>And</maml:name>
+<maml:description>
+<maml:para>Queries for logical And (including MongoDB $and). Supported types: 1) MongoDB.Driver.IMongoQuery (see New-MdbcQuery); 2) _id holders (Mdbc.Dictionary, BsonDocument, custom objects); 3) hashtables representing MongoDB JSON-like query expressions; 4) other values are treated as _id and converted to _id queries.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Exists</maml:name>
+<maml:description>
+<maml:para>Checks if the field exists (MongoDB $exists).</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>GE</maml:name>
+<maml:description>
+<maml:para>Greater or equal test (MongoDB $gte).</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>GT</maml:name>
+<maml:description>
+<maml:para>Greater than test (MongoDB $gt).</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>IEQ</maml:name>
+<maml:description>
+<maml:para>Ignore case equality test for strings (no MongoDB analogue). It is not combined with other query tests.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>In</maml:name>
+<maml:description>
+<maml:para>Checks if the field has any value is in the specified set (MongoDB $in).</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>INE</maml:name>
+<maml:description>
+<maml:para>Ignore case inequality test for strings (no MongoDB analogue). It is not combined with other query tests.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>LE</maml:name>
+<maml:description>
+<maml:para>Less or equal test (MongoDB $lte).</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>LT</maml:name>
+<maml:description>
+<maml:para>Less than test (MongoDB $lt).</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Match</maml:name>
+<maml:description>
+<maml:para>Regular expression test (MongoDB /.../imxs values, $regex and $options operators). It is not combined with other query tests.</maml:para>
+<maml:para>Value is an array of one or two items. A single item is either a regular expression string pattern or a regular expression object. Two items are both strings: a regular expression pattern and options, combination of &apos;i&apos;, &apos;m&apos;, &apos;x&apos;, &apos;s&apos; characters.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Matches</maml:name>
+<maml:description>
+<maml:para>Checks if an element in an array matches the specified query expression (MongoDB $elemMatch).</maml:para>
+<maml:para>It is needed only when more than one field must be matched in the array element.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Mod</maml:name>
+<maml:description>
+<maml:para>Modulo test (MongoDB $mod). The argument is an array or two items: the modulus and the result value to be tested.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>NE</maml:name>
+<maml:description>
+<maml:para>Inequality test (MongoDB $ne).</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Not</maml:name>
+<maml:description>
+<maml:para>Tells to negate the whole query expression (MongoDB $not).</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>NotIn</maml:name>
+<maml:description>
+<maml:para>Checks if the field does not have any value in the specified set (MongoDB $nin).</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="true" position="named" >
+<maml:name>Or</maml:name>
+<maml:description>
+<maml:para>Queries for logical Or (MongoDB $or). Supported types: 1) MongoDB.Driver.IMongoQuery (see New-MdbcQuery); 2) _id holders (Mdbc.Dictionary, BsonDocument, custom objects); 3) hashtables representing MongoDB JSON-like query expressions; 4) other values are treated as _id and converted to _id queries.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Size</maml:name>
+<maml:description>
+<maml:para>Array element item count test (MongoDB $size).</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Type</maml:name>
+<maml:description>
+<maml:para>Element type test (MongoDB $type).</maml:para>
+<maml:para>Values : EndOfDocument, Double, String, Document, Array, Binary, Undefined, ObjectId, Boolean, DateTime, Null, RegularExpression, JavaScript, Symbol, JavaScriptWithScope, Int32, Timestamp, Int64, MaxKey, MinKey</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Where</maml:name>
+<maml:description>
+<maml:para>$where argument, JavaScript Boolean expression.</maml:para>
+</maml:description>
+</command:parameter>
+</command:parameters>
+<command:inputTypes>
+<command:inputType>
+<dev:type>
+<maml:name>-</maml:name>
+</dev:type>
+</command:inputType>
+</command:inputTypes>
+<command:returnValues>
+<command:returnValue>
+<dev:type>
+<maml:name>[MongoDB.Driver.IMongoQuery]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>Use it for Get-MdbcData, Remove-MdbcData, Update-MdbcData.</maml:para>
+</maml:description>
+</command:returnValue>
+</command:returnValues>
+<maml:relatedLinks>
+<maml:navigationLink>
+<maml:linkText>Get-MdbcData</maml:linkText>
+</maml:navigationLink>
+<maml:navigationLink>
+<maml:linkText>Remove-MdbcData</maml:linkText>
+</maml:navigationLink>
+<maml:navigationLink>
+<maml:linkText>Update-MdbcData</maml:linkText>
+</maml:navigationLink>
+<maml:navigationLink>
+<maml:linkText>Advanced Queries</maml:linkText>
+<maml:uri>http://www.mongodb.org/display/DOCS/Advanced+Queries</maml:uri>
+</maml:navigationLink>
+</maml:relatedLinks>
+</command:command>
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+<command:details>
+<command:name>New-MdbcUpdate</command:name>
+<maml:description>
+<maml:para>Creates update expressions for Update-MdbcData.</maml:para>
+</maml:description>
+<command:verb>New</command:verb>
+<command:noun>MdbcUpdate</command:noun>
+</command:details>
+<maml:description>
+<maml:para>Creates update expressions for Update-MdbcData.</maml:para>
+<maml:para></maml:para>
+<maml:para>&gt; New-MdbcUpdate -Name -AddToSet</maml:para>
+<maml:para>{ $addToSet : { field : value } }</maml:para>
+<maml:para>Adds value to the array only if its not in the array already, if field is an existing array, otherwise sets field to the array value if field is not present. If field is present but is not an array, an error condition is raised.</maml:para>
+<maml:para></maml:para>
+<maml:para>&gt; New-MdbcUpdate -Name -AddToSetEach</maml:para>
+<maml:para>{ $addToSet : { a : { $each : [ 3 , 5 , 6 ] } } }</maml:para>
+<maml:para>To add many values.</maml:para>
+<maml:para></maml:para>
+<maml:para>&gt; New-MdbcUpdate -Name -Band</maml:para>
+<maml:para>{ $bit : { field : { and : 5 } } }</maml:para>
+<maml:para>Does a bitwise-and update of field. Can only be used with integers.</maml:para>
+<maml:para></maml:para>
+<maml:para>&gt; New-MdbcUpdate -Name -Bor</maml:para>
+<maml:para>{ $bit : { field : { or : 5 } } }</maml:para>
+<maml:para>Does a bitwise-or update of field. Can only be used with integers.</maml:para>
+<maml:para></maml:para>
+<maml:para>&gt; New-MdbcUpdate -Name -Increment</maml:para>
+<maml:para>{ $inc : { field : value } }</maml:para>
+<maml:para>Increments field by the number value if field is present in the object, otherwise sets field to the number value.</maml:para>
+<maml:para></maml:para>
+<maml:para>&gt; New-MdbcUpdate -Name -PopFirst</maml:para>
+<maml:para>{ $pop : { field : -1  } }</maml:para>
+<maml:para>Removes the first element in an array.</maml:para>
+<maml:para></maml:para>
+<maml:para>&gt; New-MdbcUpdate -Name -PopLast</maml:para>
+<maml:para>{ $pop : { field : 1  } }</maml:para>
+<maml:para>Removes the last element in an array.</maml:para>
+<maml:para></maml:para>
+<maml:para>&gt; New-MdbcUpdate -Name -Pull</maml:para>
+<maml:para>{ $pull : { field : value } }</maml:para>
+<maml:para>Removes all occurrences of value from field, if field is an array. If field is present but is not an array, an error condition is raised.</maml:para>
+<maml:para>{ $pull : { field : {&lt;match-criteria&gt;} } }</maml:para>
+<maml:para>Removes array elements meeting match criteria.</maml:para>
+<maml:para></maml:para>
+<maml:para>&gt; New-MdbcUpdate -Name -PullAll</maml:para>
+<maml:para>{ $pullAll : { field : value_array } }</maml:para>
+<maml:para>Removes all occurrences of each value in value_array from field, if field is an array. If field is present but is not an array, an error condition is raised.</maml:para>
+<maml:para></maml:para>
+<maml:para>&gt; New-MdbcUpdate -Name -Push</maml:para>
+<maml:para>{ $push : { field : value } }</maml:para>
+<maml:para>Appends value to field, if field is an existing array, otherwise sets field to the array [value] if field is not present. If field is present but is not an array, an error condition is raised.</maml:para>
+<maml:para></maml:para>
+<maml:para>&gt; New-MdbcUpdate -Name -PushAll</maml:para>
+<maml:para>{ $pushAll : { field : value_array } }</maml:para>
+<maml:para>Appends each value in value_array to field, if field is an existing array, otherwise sets field to the array value_array if field is not present. If field is present but is not an array, an error condition is raised.</maml:para>
+<maml:para></maml:para>
+<maml:para>&gt; New-MdbcUpdate -Name -Rename</maml:para>
+<maml:para>{ $rename : { old_field_name : new_field_name } }</maml:para>
+<maml:para>Renames the field with name &apos;old_field_name&apos; to &apos;new_field_name&apos;. Does not expand arrays to find a match for &apos;old_field_name&apos;.</maml:para>
+<maml:para></maml:para>
+<maml:para>&gt; New-MdbcUpdate -Name -Set</maml:para>
+<maml:para>{ $set : { field : value } }</maml:para>
+<maml:para>Sets field to value. All data types are supported.</maml:para>
+<maml:para></maml:para>
+<maml:para>&gt; New-MdbcUpdate -Name -Unset</maml:para>
+<maml:para>{ $unset : { field : 1} }</maml:para>
+<maml:para>Deletes a given field.</maml:para>
+</maml:description>
+<command:syntax>
+<command:syntaxItem>
+<maml:name>New-MdbcUpdate</maml:name>
+<command:parameter required="true" position="1" >
+<maml:name>Name</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>AddToSet</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>New-MdbcUpdate</maml:name>
+<command:parameter required="true" position="1" >
+<maml:name>Name</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>AddToSetEach</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>New-MdbcUpdate</maml:name>
+<command:parameter required="true" position="1" >
+<maml:name>Name</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>Band</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>New-MdbcUpdate</maml:name>
+<command:parameter required="true" position="1" >
+<maml:name>Name</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>Bor</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>New-MdbcUpdate</maml:name>
+<command:parameter required="true" position="1" >
+<maml:name>Name</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>Increment</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>New-MdbcUpdate</maml:name>
+<command:parameter required="true" position="1" >
+<maml:name>Name</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>PopFirst</maml:name>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>New-MdbcUpdate</maml:name>
+<command:parameter required="true" position="1" >
+<maml:name>Name</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>PopLast</maml:name>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>New-MdbcUpdate</maml:name>
+<command:parameter required="true" position="1" >
+<maml:name>Name</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>Pull</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>New-MdbcUpdate</maml:name>
+<command:parameter required="true" position="1" >
+<maml:name>Name</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>PullAll</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>New-MdbcUpdate</maml:name>
+<command:parameter required="true" position="1" >
+<maml:name>Name</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>Push</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>New-MdbcUpdate</maml:name>
+<command:parameter required="true" position="1" >
+<maml:name>Name</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>PushAll</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>New-MdbcUpdate</maml:name>
+<command:parameter required="true" position="1" >
+<maml:name>Name</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>Rename</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>New-MdbcUpdate</maml:name>
+<command:parameter required="true" position="1" >
+<maml:name>Name</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>Set</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>New-MdbcUpdate</maml:name>
+<command:parameter required="true" position="1" >
+<maml:name>Name</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>Unset</maml:name>
+</command:parameter>
+</command:syntaxItem>
+</command:syntax>
+<command:parameters>
+<command:parameter required="true" position="1" >
+<maml:name>Name</maml:name>
+<maml:description>
+<maml:para>Name of a field to be updated.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>AddToSet</maml:name>
+<maml:description>
+<maml:para>$addToSet argument. If it is a collection then it is treated as a single value to add.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>AddToSetEach</maml:name>
+<maml:description>
+<maml:para>$addToSet $each argument, a collection of values, each value is added.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>Band</maml:name>
+<maml:description>
+<maml:para>$bit &quot;and&quot; argument, [int] or [long].</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>Bor</maml:name>
+<maml:description>
+<maml:para>$bit &quot;or&quot; argument, [int] or [long].</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>Increment</maml:name>
+<maml:description>
+<maml:para>$inc argument, [int], [long], or [double].</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>PopFirst</maml:name>
+<maml:description>
+<maml:para>Tells to remove the first element in an array.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>PopLast</maml:name>
+<maml:description>
+<maml:para>Tells to remove the last element in an array.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>Pull</maml:name>
+<maml:description>
+<maml:para>$pull argument, a value or a query. If it is a collection then it is treated as a single value to pull.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>PullAll</maml:name>
+<maml:description>
+<maml:para>$pullAll argument, a collection of values, each value is pulled.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>Push</maml:name>
+<maml:description>
+<maml:para>$push argument. If it is a collection then it is treated as a single value to push.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>PushAll</maml:name>
+<maml:description>
+<maml:para>$pushAll argument, a collection of values, each value is pushed.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>Rename</maml:name>
+<maml:description>
+<maml:para>$rename argument, the new field name.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>Set</maml:name>
+<maml:description>
+<maml:para>$set argument. All standard types are supported.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>Unset</maml:name>
+<maml:description>
+<maml:para>Tells to remove the field.</maml:para>
+</maml:description>
+</command:parameter>
+</command:parameters>
+<command:inputTypes>
+<command:inputType>
+<dev:type>
+<maml:name>-</maml:name>
+</dev:type>
+</command:inputType>
+</command:inputTypes>
+<command:returnValues>
+<command:returnValue>
+<dev:type>
+<maml:name>Update expression</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>Use these expression objects for Update-MdbcData.</maml:para>
+</maml:description>
+</command:returnValue>
+</command:returnValues>
+<maml:relatedLinks>
+<maml:navigationLink>
+<maml:linkText>Update-MdbcData</maml:linkText>
+</maml:navigationLink>
+</maml:relatedLinks>
+</command:command>
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+<command:details>
+<command:name>Add-MdbcData</command:name>
+<maml:description>
+<maml:para>Adds new documents to the database collection or updates existing.</maml:para>
+</maml:description>
+<command:verb>Add</command:verb>
+<command:noun>MdbcData</command:noun>
+</command:details>
+<maml:description>
+<maml:para>Adds new documents to the database collection or updates existing.</maml:para>
+<maml:para>In order to get a result object from the driver use the switch Result. Driver exceptions are caught and written as not terminating errors. Use proper error action preference and/or cmdlet common error parameters.</maml:para>
+</maml:description>
+<command:syntax>
+<command:syntaxItem>
+<maml:name>Add-MdbcData</maml:name>
+<command:parameter required="false" position="1" >
+<maml:name>InputObject</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Collection</maml:name>
+<command:parameterValue required="true">MongoCollection</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>WriteConcern</maml:name>
+<command:parameterValue required="true">WriteConcern</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Result</maml:name>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Update</maml:name>
+</command:parameter>
+</command:syntaxItem>
+</command:syntax>
+<command:parameters>
+<command:parameter required="false" pipelineInput="true (ByValue)" position="1" >
+<maml:name>InputObject</maml:name>
+<maml:description>
+<maml:para>Document (Mdbc.Dictionary, BsonDocument, or PSCustomObject).</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Collection</maml:name>
+<maml:description>
+<maml:para>Collection object. It is obtained by Connect-Mdbc or from database or server objects. If it is not specified then the current variable $Collection is used.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Result</maml:name>
+<maml:description>
+<maml:para>Tells to output an object returned by the driver.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Update</maml:name>
+<maml:description>
+<maml:para>Tells to update existing documents with the same _id or add new documents otherwise.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>WriteConcern</maml:name>
+<maml:description>
+<maml:para>Write concern options.</maml:para>
+</maml:description>
+</command:parameter>
+</command:parameters>
+<command:inputTypes>
+<command:inputType>
+<dev:type>
+<maml:name>[Mdbc.Dictionary]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>Objects created by New-MdbcData or obtained by Get-MdbcData.</maml:para>
+</maml:description>
+</command:inputType>
+<command:inputType>
+<dev:type>
+<maml:name>[PSCustomObject]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>Custom objects often created by Select-Object but not only.</maml:para>
+</maml:description>
+</command:inputType>
+<command:inputType>
+<dev:type>
+<maml:name>[MongoDB.Bson.BsonDocument]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>This type is supported but normally it should not be used directly.</maml:para>
+</maml:description>
+</command:inputType>
+</command:inputTypes>
+<command:returnValues>
+<command:returnValue>
+<dev:type>
+<maml:name>[MongoDB.Driver.WriteConcernResult]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>Result object from the driver is written if the switch Result is present.</maml:para>
+</maml:description>
+</command:returnValue>
+</command:returnValues>
+<maml:relatedLinks>
+<maml:navigationLink>
+<maml:linkText>New-MdbcData</maml:linkText>
+</maml:navigationLink>
+<maml:navigationLink>
+<maml:linkText>Select-Object</maml:linkText>
+</maml:navigationLink>
+</maml:relatedLinks>
+</command:command>
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+<command:details>
+<command:name>Get-MdbcData</command:name>
+<maml:description>
+<maml:para>Gets documents or data from the database collection.</maml:para>
+</maml:description>
+<command:verb>Get</command:verb>
+<command:noun>MdbcData</command:noun>
+</command:details>
+<maml:description>
+<maml:para>Gets documents or other information from the database collection.
+
+By default documents are represented by the Mdbc.Dictionary type which wraps BsonDocument objects. This is the fastest way to obtain query results and the type is friendly enough for using in scripts.
+
+It is sometimes more convenient to get data as custom types (use the parameter As) or as PS objects (use the switch AsCustomObject). Note that use of custom types is not always possible and performance of PS objects is not always good enough. Moreover, PS object property names are case insensitive unlike document field names.
+
+--------------------------------------------------</maml:para>
+<maml:para></maml:para>
+<maml:para>&gt; Get-MdbcData [-Query] -Distinct [-Collection]</maml:para>
+<maml:para>Gets distinct field values.</maml:para>
+<maml:para></maml:para>
+<maml:para>&gt; Get-MdbcData [-Query] -Remove [-Collection] [-Modes] [-SortBy]</maml:para>
+<maml:para>Removes and gets the first document specified by Query and SortBy.</maml:para>
+<maml:para></maml:para>
+<maml:para>&gt; Get-MdbcData [-Query] -Count [-Collection] [-First] [-Last] [-Modes] [-Skip]</maml:para>
+<maml:para>Gets document count.</maml:para>
+<maml:para></maml:para>
+<maml:para>&gt; Get-MdbcData [-Query] -Update [-Collection] [-Modes] [-Property] [-SortBy] [-Add] [-New]</maml:para>
+<maml:para>Updates and gets the first document specified by Query and SortBy.</maml:para>
+<maml:para></maml:para>
+<maml:para>&gt; Get-MdbcData [-Query] [-As] [-Collection] [-First] [-Last] [-Modes] [-Property] [-Skip] [-SortBy] [-AsCustomObject]</maml:para>
+<maml:para>Gets documents.</maml:para>
+<maml:para></maml:para>
+<maml:para>&gt; Get-MdbcData [-Query] -Cursor [-As] [-Collection] [-First] [-Last] [-Modes] [-Property] [-Skip] [-SortBy] [-AsCustomObject]</maml:para>
+<maml:para>Gets the result cursor.</maml:para>
+</maml:description>
+<command:syntax>
+<command:syntaxItem>
+<maml:name>Get-MdbcData</maml:name>
+<command:parameter required="false" position="1" >
+<maml:name>Query</maml:name>
+<command:parameterValue required="true">Object</command:parameterValue>
+</command:parameter>
+<command:parameter required="true" position="named" >
+<maml:name>Distinct</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Collection</maml:name>
+<command:parameterValue required="true">MongoCollection</command:parameterValue>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>Get-MdbcData</maml:name>
+<command:parameter required="false" position="1" >
+<maml:name>Query</maml:name>
+<command:parameterValue required="true">Object</command:parameterValue>
+</command:parameter>
+<command:parameter required="true" position="named" >
+<maml:name>Remove</maml:name>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Collection</maml:name>
+<command:parameterValue required="true">MongoCollection</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Modes</maml:name>
+<command:parameterValue required="true">QueryFlags</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>SortBy</maml:name>
+<command:parameterValue required="true">Object[]</command:parameterValue>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>Get-MdbcData</maml:name>
+<command:parameter required="false" position="1" >
+<maml:name>Query</maml:name>
+<command:parameterValue required="true">Object</command:parameterValue>
+</command:parameter>
+<command:parameter required="true" position="named" >
+<maml:name>Count</maml:name>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Collection</maml:name>
+<command:parameterValue required="true">MongoCollection</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>First</maml:name>
+<command:parameterValue required="true">Int32</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Last</maml:name>
+<command:parameterValue required="true">Int32</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Modes</maml:name>
+<command:parameterValue required="true">QueryFlags</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Skip</maml:name>
+<command:parameterValue required="true">Int32</command:parameterValue>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>Get-MdbcData</maml:name>
+<command:parameter required="false" position="1" >
+<maml:name>Query</maml:name>
+<command:parameterValue required="true">Object</command:parameterValue>
+</command:parameter>
+<command:parameter required="true" position="named" >
+<maml:name>Update</maml:name>
+<command:parameterValue required="true">Object</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Collection</maml:name>
+<command:parameterValue required="true">MongoCollection</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Modes</maml:name>
+<command:parameterValue required="true">QueryFlags</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Property</maml:name>
+<command:parameterValue required="true">String[]</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>SortBy</maml:name>
+<command:parameterValue required="true">Object[]</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Add</maml:name>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>New</maml:name>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>Get-MdbcData</maml:name>
+<command:parameter required="false" position="1" >
+<maml:name>Query</maml:name>
+<command:parameterValue required="true">Object</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>As</maml:name>
+<command:parameterValue required="true">Type</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Collection</maml:name>
+<command:parameterValue required="true">MongoCollection</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>First</maml:name>
+<command:parameterValue required="true">Int32</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Last</maml:name>
+<command:parameterValue required="true">Int32</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Modes</maml:name>
+<command:parameterValue required="true">QueryFlags</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Property</maml:name>
+<command:parameterValue required="true">String[]</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Skip</maml:name>
+<command:parameterValue required="true">Int32</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>SortBy</maml:name>
+<command:parameterValue required="true">Object[]</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>AsCustomObject</maml:name>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem>
+<maml:name>Get-MdbcData</maml:name>
+<command:parameter required="false" position="1" >
+<maml:name>Query</maml:name>
+<command:parameterValue required="true">Object</command:parameterValue>
+</command:parameter>
+<command:parameter required="true" position="named" >
+<maml:name>Cursor</maml:name>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>As</maml:name>
+<command:parameterValue required="true">Type</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Collection</maml:name>
+<command:parameterValue required="true">MongoCollection</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>First</maml:name>
+<command:parameterValue required="true">Int32</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Last</maml:name>
+<command:parameterValue required="true">Int32</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Modes</maml:name>
+<command:parameterValue required="true">QueryFlags</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Property</maml:name>
+<command:parameterValue required="true">String[]</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Skip</maml:name>
+<command:parameterValue required="true">Int32</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>SortBy</maml:name>
+<command:parameterValue required="true">Object[]</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>AsCustomObject</maml:name>
+</command:parameter>
+</command:syntaxItem>
+</command:syntax>
+<command:parameters>
+<command:parameter required="false" position="1" >
+<maml:name>Query</maml:name>
+<maml:description>
+<maml:para>Specifies documents to be processed. Supported types: 1) MongoDB.Driver.IMongoQuery (see New-MdbcQuery); 2) _id holders (Mdbc.Dictionary, BsonDocument, custom objects); 3) hashtables representing MongoDB JSON-like query expressions; 4) other values are treated as _id and converted to _id queries.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Add</maml:name>
+<maml:description>
+<maml:para>Tells to add a new document on Update if the old document does not exist.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>As</maml:name>
+<maml:description>
+<maml:para>The custom type of returned documents. The type members must be compatible with a query unless a custom serialization is registered for the type.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>AsCustomObject</maml:name>
+<maml:description>
+<maml:para>Tells to return documents represented by PSObject. PS objects are convenient in some scenarios, especially interactive. Performance is not always good enough.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Collection</maml:name>
+<maml:description>
+<maml:para>Collection object. It is obtained by Connect-Mdbc or from database or server objects. If it is not specified then the current variable $Collection is used.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="true" position="named" >
+<maml:name>Count</maml:name>
+<maml:description>
+<maml:para>Tells to return the number of all documents or documents that match a query. The First and Skip values are taken into account.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="true" position="named" >
+<maml:name>Cursor</maml:name>
+<maml:description>
+<maml:para>Tells to return a cursor to be used for further operations. See the C# driver manual.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="true" position="named" >
+<maml:name>Distinct</maml:name>
+<maml:description>
+<maml:para>Tells to return distinct values for a given field for all documents or documents that match a query.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>First</maml:name>
+<maml:description>
+<maml:para>Specifies the number of first documents to be returned.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Last</maml:name>
+<maml:description>
+<maml:para>Specifies the number of last documents to be returned.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Modes</maml:name>
+<maml:description>
+<maml:para>Additional query options. See the C# driver manual.</maml:para>
+<maml:para>Values : None, TailableCursor, SlaveOk, NoCursorTimeout, AwaitData, Exhaust, Partial</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>New</maml:name>
+<maml:description>
+<maml:para>Tells to return the new document on Update. By default the old document is returned.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Property</maml:name>
+<maml:description>
+<maml:para>Subset of fields to be retrieved. The document _id is always included, thus, expressions @() and _id are the same.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="true" position="named" >
+<maml:name>Remove</maml:name>
+<maml:description>
+<maml:para>Tells to remove and get the first document specified by Query and SortBy.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Skip</maml:name>
+<maml:description>
+<maml:para>Number of documents to skip from the beginning or from the end if Last is specified.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>SortBy</maml:name>
+<maml:description>
+<maml:para>Specifies sorting field names and directions. Values are either field names or hashtables with single entries: @{Field = &lt;Boolean&gt;}. True and false or their equivalents (say, 1 and 0) are for ascending and descending directions.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="true" position="named" >
+<maml:name>Update</maml:name>
+<maml:description>
+<maml:para>Tells to update and get the first document specified by Query and SortBy.</maml:para>
+</maml:description>
+</command:parameter>
+</command:parameters>
+<command:inputTypes>
+<command:inputType>
+<dev:type>
+<maml:name>-</maml:name>
+</dev:type>
+</command:inputType>
+</command:inputTypes>
+<command:returnValues>
+<command:returnValue>
+<dev:type>
+<maml:name>Int64</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>If the Count or Size switch is specified.</maml:para>
+</maml:description>
+</command:returnValue>
+<command:returnValue>
+<dev:type>
+<maml:name>object[]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>If the Distinct field name is specified.</maml:para>
+</maml:description>
+</command:returnValue>
+<command:returnValue>
+<dev:type>
+<maml:name>MongoDB.Driver.MongoCursor</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>If the Cursor switch is specified.</maml:para>
+</maml:description>
+</command:returnValue>
+<command:returnValue>
+<dev:type>
+<maml:name>Mdbc.Dictionary[]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>Query results, BSON document wrapper objects.</maml:para>
+</maml:description>
+</command:returnValue>
+</command:returnValues>
+<maml:relatedLinks>
+<maml:navigationLink>
+<maml:linkText>Connect-Mdbc</maml:linkText>
+</maml:navigationLink>
+<maml:navigationLink>
+<maml:linkText>New-MdbcQuery</maml:linkText>
+</maml:navigationLink>
+</maml:relatedLinks>
+</command:command>
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+<command:details>
+<command:name>Remove-MdbcData</command:name>
+<maml:description>
+<maml:para>Removes specified documents from the collection.</maml:para>
+</maml:description>
+<command:verb>Remove</command:verb>
+<command:noun>MdbcData</command:noun>
+</command:details>
+<maml:description>
+<maml:para>Removes specified documents from the collection.</maml:para>
+<maml:para>In order to get a result object from the driver use the switch Result. Driver exceptions are caught and written as not terminating errors. Use proper error action preference and/or cmdlet common error parameters.</maml:para>
+</maml:description>
+<command:syntax>
+<command:syntaxItem>
+<maml:name>Remove-MdbcData</maml:name>
+<command:parameter required="true" position="1" >
+<maml:name>Query</maml:name>
+<command:parameterValue required="true">Object</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Collection</maml:name>
+<command:parameterValue required="true">MongoCollection</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Modes</maml:name>
+<command:parameterValue required="true">RemoveFlags</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>WriteConcern</maml:name>
+<command:parameterValue required="true">WriteConcern</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Result</maml:name>
+</command:parameter>
+</command:syntaxItem>
+</command:syntax>
+<command:parameters>
+<command:parameter required="true" pipelineInput="true (ByValue)" position="1" >
+<maml:name>Query</maml:name>
+<maml:description>
+<maml:para>Specifies documents to be processed. Supported types: 1) MongoDB.Driver.IMongoQuery (see New-MdbcQuery); 2) _id holders (Mdbc.Dictionary, BsonDocument, custom objects); 3) hashtables representing MongoDB JSON-like query expressions; 4) other values are treated as _id and converted to _id queries.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Collection</maml:name>
+<maml:description>
+<maml:para>Collection object. It is obtained by Connect-Mdbc or from database or server objects. If it is not specified then the current variable $Collection is used.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Modes</maml:name>
+<maml:description>
+<maml:para>Additional removal flags. See the C# driver manual.</maml:para>
+<maml:para>Values : None, Single</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Result</maml:name>
+<maml:description>
+<maml:para>Tells to output an object returned by the driver.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>WriteConcern</maml:name>
+<maml:description>
+<maml:para>Write concern options.</maml:para>
+</maml:description>
+</command:parameter>
+</command:parameters>
+<command:inputTypes>
+<command:inputType>
+<dev:type>
+<maml:name>[MongoDB.Driver.IMongoQuery]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>Query expression. See New-MdbcQuery (query).</maml:para>
+</maml:description>
+</command:inputType>
+<command:inputType>
+<dev:type>
+<maml:name>[Mdbc.Dictionary], [MongoDB.Bson.BsonDocument]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>A document which _id is used for identification. [Mdbc.Dictionary] objects are created by New-MdbcData or obtained by Get-MdbcData.</maml:para>
+</maml:description>
+</command:inputType>
+<command:inputType>
+<dev:type>
+<maml:name>[object]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>Any other value is treated as _id for identification.</maml:para>
+</maml:description>
+</command:inputType>
+</command:inputTypes>
+<command:returnValues>
+<command:returnValue>
+<dev:type>
+<maml:name>[MongoDB.Driver.WriteConcernResult]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>Result object from the driver is written if the switch Result is present.</maml:para>
+</maml:description>
+</command:returnValue>
+</command:returnValues>
+<maml:relatedLinks>
+<maml:navigationLink>
+<maml:linkText>Connect-Mdbc</maml:linkText>
+</maml:navigationLink>
+<maml:navigationLink>
+<maml:linkText>New-MdbcQuery</maml:linkText>
+</maml:navigationLink>
+</maml:relatedLinks>
+</command:command>
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+<command:details>
+<command:name>Update-MdbcData</command:name>
+<maml:description>
+<maml:para>Updates the specified documents.</maml:para>
+</maml:description>
+<command:verb>Update</command:verb>
+<command:noun>MdbcData</command:noun>
+</command:details>
+<maml:description>
+<maml:para>Updates the specified documents.</maml:para>
+<maml:para>In order to get a result object from the driver use the switch Result. Driver exceptions are caught and written as not terminating errors. Use proper error action preference and/or cmdlet common error parameters.</maml:para>
+</maml:description>
+<command:syntax>
+<command:syntaxItem>
+<maml:name>Update-MdbcData</maml:name>
+<command:parameter required="true" position="1" >
+<maml:name>Update</maml:name>
+<command:parameterValue required="true">Object</command:parameterValue>
+</command:parameter>
+<command:parameter required="true" position="2" >
+<maml:name>Query</maml:name>
+<command:parameterValue required="true">Object</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Collection</maml:name>
+<command:parameterValue required="true">MongoCollection</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Modes</maml:name>
+<command:parameterValue required="true">UpdateFlags</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>WriteConcern</maml:name>
+<command:parameterValue required="true">WriteConcern</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Result</maml:name>
+</command:parameter>
+</command:syntaxItem>
+</command:syntax>
+<command:parameters>
+<command:parameter required="true" position="1" >
+<maml:name>Update</maml:name>
+<maml:description>
+<maml:para>Update expressions. See New-MdbcUpdate.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="true" pipelineInput="true (ByValue)" position="2" >
+<maml:name>Query</maml:name>
+<maml:description>
+<maml:para>Specifies documents to be processed. Supported types: 1) MongoDB.Driver.IMongoQuery (see New-MdbcQuery); 2) _id holders (Mdbc.Dictionary, BsonDocument, custom objects); 3) hashtables representing MongoDB JSON-like query expressions; 4) other values are treated as _id and converted to _id queries.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Collection</maml:name>
+<maml:description>
+<maml:para>Collection object. It is obtained by Connect-Mdbc or from database or server objects. If it is not specified then the current variable $Collection is used.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Modes</maml:name>
+<maml:description>
+<maml:para>Additional update flags. See the C# driver manual.</maml:para>
+<maml:para>Values : None, Upsert, Multi</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Result</maml:name>
+<maml:description>
+<maml:para>Tells to output an object returned by the driver.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>WriteConcern</maml:name>
+<maml:description>
+<maml:para>Write concern options.</maml:para>
+</maml:description>
+</command:parameter>
+</command:parameters>
+<command:inputTypes>
+<command:inputType>
+<dev:type>
+<maml:name>[MongoDB.Driver.IMongoQuery]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>Query expression. See New-MdbcQuery (query).</maml:para>
+</maml:description>
+</command:inputType>
+<command:inputType>
+<dev:type>
+<maml:name>[Mdbc.Dictionary], [MongoDB.Bson.BsonDocument]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>A document which _id is used for identification. [Mdbc.Dictionary] objects are created by New-MdbcData or obtained by Get-MdbcData.</maml:para>
+</maml:description>
+</command:inputType>
+<command:inputType>
+<dev:type>
+<maml:name>[object]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>Any other value is treated as _id for identification.</maml:para>
+</maml:description>
+</command:inputType>
+</command:inputTypes>
+<command:returnValues>
+<command:returnValue>
+<dev:type>
+<maml:name>[MongoDB.Driver.WriteConcernResult]</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>Result object from the driver is written if the switch Result is present.</maml:para>
+</maml:description>
+</command:returnValue>
+</command:returnValues>
+<maml:relatedLinks>
+<maml:navigationLink>
+<maml:linkText>Connect-Mdbc</maml:linkText>
+</maml:navigationLink>
+<maml:navigationLink>
+<maml:linkText>New-MdbcUpdate</maml:linkText>
+</maml:navigationLink>
+</maml:relatedLinks>
+</command:command>
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+<command:details>
+<command:name>Invoke-MdbcMapReduce</command:name>
+<maml:description>
+<maml:para>Invokes a Map/Reduce command.</maml:para>
+</maml:description>
+<command:verb>Invoke</command:verb>
+<command:noun>MdbcMapReduce</command:noun>
+</command:details>
+<maml:description>
+<maml:para>Invokes a Map/Reduce command.</maml:para>
+</maml:description>
+<command:syntax>
+<command:syntaxItem>
+<maml:name>Invoke-MdbcMapReduce</maml:name>
+<command:parameter required="true" position="1" >
+<maml:name>Function</maml:name>
+<command:parameterValue required="true">String[]</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="2" >
+<maml:name>Query</maml:name>
+<command:parameterValue required="true">Object</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>As</maml:name>
+<command:parameterValue required="true">Type</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Collection</maml:name>
+<command:parameterValue required="true">MongoCollection</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>First</maml:name>
+<command:parameterValue required="true">Int32</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>OutCollection</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>OutDatabase</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>OutMode</maml:name>
+<command:parameterValue required="true">MapReduceOutputMode</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>ResultVariable</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Scope</maml:name>
+<command:parameterValue required="true">IDictionary</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>SortBy</maml:name>
+<command:parameterValue required="true">Object[]</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>AsCustomObject</maml:name>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>JSMode</maml:name>
+</command:parameter>
+</command:syntaxItem>
+</command:syntax>
+<command:parameters>
+<command:parameter required="true" position="1" >
+<maml:name>Function</maml:name>
+<maml:description>
+<maml:para>Two (Map and Reduce) or three (Map, Reduce, Finalize) JavaScript snippets which define the functions. Use Scope in order to set variables that can be used in the functions.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="2" >
+<maml:name>Query</maml:name>
+<maml:description>
+<maml:para>Specifies documents to be processed. Supported types: 1) MongoDB.Driver.IMongoQuery (see New-MdbcQuery); 2) _id holders (Mdbc.Dictionary, BsonDocument, custom objects); 3) hashtables representing MongoDB JSON-like query expressions; 4) other values are treated as _id and converted to _id queries.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>As</maml:name>
+<maml:description>
+<maml:para>The custom type of returned documents. The type members must be compatible with a query unless a custom serialization is registered for the type.</maml:para>
+<maml:para>This parameter is used with inline output only.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>AsCustomObject</maml:name>
+<maml:description>
+<maml:para>Tells to return documents represented by PSObject. PS objects are convenient in some scenarios, especially interactive. Performance is not always good enough.</maml:para>
+<maml:para>This parameter is used with inline output only.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Collection</maml:name>
+<maml:description>
+<maml:para>Collection object. It is obtained by Connect-Mdbc or from database or server objects. If it is not specified then the current variable $Collection is used.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>First</maml:name>
+<maml:description>
+<maml:para>The maximum number of input documents. It is used together with Query and normally with SortBy.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>JSMode</maml:name>
+<maml:description>
+<maml:para>Tells to use JS mode which avoids some conversions BSON &lt;-&gt; JS. The execution time may be significantly reduced. Note that this mode is limited by JS heap size and a maximum of 500k unique keys.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>OutCollection</maml:name>
+<maml:description>
+<maml:para>Name of the output collection. If it is omitted then inline output mode is used, result documents are written to the output directly.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>OutDatabase</maml:name>
+<maml:description>
+<maml:para>Name of the output database, used together with Collection. By default the database of the input collection is used.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>OutMode</maml:name>
+<maml:description>
+<maml:para>Specifies the output mode, used together with Collection. The default value is Replace (all the existing data are replaced with new). Other valid values are Merge and Reduce. Merge: new data are either added or replace existing data with the same keys. Reduce: the Reduce function is applied.</maml:para>
+<maml:para>Values : Inline, Replace, Merge, Reduce</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>ResultVariable</maml:name>
+<maml:description>
+<maml:para>Tells to get the result object as a variable with the specified name. The result object type is MapReduceResult. Some properties: Ok, ErrorMessage, InputCount, EmitCount, OutputCount, Duration.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Scope</maml:name>
+<maml:description>
+<maml:para>Specifies the variables that can be used by Map, Reduce, and Finalize functions.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>SortBy</maml:name>
+<maml:description>
+<maml:para>Specifies sorting field names and directions. Values are either field names or hashtables with single entries: @{Field = &lt;Boolean&gt;}. True and false or their equivalents (say, 1 and 0) are for ascending and descending directions.</maml:para>
+<maml:para>This parameter is used together with Query.</maml:para>
+</maml:description>
+</command:parameter>
+</command:parameters>
+<command:inputTypes>
+<command:inputType>
+<dev:type>
+<maml:name>-</maml:name>
+</dev:type>
+</command:inputType>
+</command:inputTypes>
+<command:returnValues>
+<command:returnValue>
+<dev:type>
+<maml:name>Mdbc.Dictionary or custom objects</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>Result documents of Map/Reduce on inline output.</maml:para>
+</maml:description>
+</command:returnValue>
+</command:returnValues>
+<maml:relatedLinks>
+<maml:navigationLink>
+<maml:linkText>MapReduce</maml:linkText>
+<maml:uri>http://www.mongodb.org/display/DOCS/MapReduce</maml:uri>
+</maml:navigationLink>
+</maml:relatedLinks>
+</command:command>
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+<command:details>
+<command:name>Add-MdbcCollection</command:name>
+<maml:description>
+<maml:para>Creates a new collection in a database.</maml:para>
+</maml:description>
+<command:verb>Add</command:verb>
+<command:noun>MdbcCollection</command:noun>
+</command:details>
+<maml:description>
+<maml:para>This cmdlet is needed only for creation of collections with extra options, like capped collections. Ordinary collections do not have to be added explicitly.</maml:para>
+</maml:description>
+<command:syntax>
+<command:syntaxItem>
+<maml:name>Add-MdbcCollection</maml:name>
+<command:parameter required="true" position="1" >
+<maml:name>Name</maml:name>
+<command:parameterValue required="true">String</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>AutoIndexId</maml:name>
+<command:parameterValue required="true">Nullable`1</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Database</maml:name>
+<command:parameterValue required="true">MongoDatabase</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>MaxDocuments</maml:name>
+<command:parameterValue required="true">Int64</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>MaxSize</maml:name>
+<command:parameterValue required="true">Int64</command:parameterValue>
+</command:parameter>
+</command:syntaxItem>
+</command:syntax>
+<command:parameters>
+<command:parameter required="true" position="1" >
+<maml:name>Name</maml:name>
+<maml:description>
+<maml:para>The name of a new collection.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>AutoIndexId</maml:name>
+<maml:description>
+<maml:para>It may be set to true or false to explicitly enable or disable automatic creation of a unique key index on the _id field.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Database</maml:name>
+<maml:description>
+<maml:para>The database instance. If it is not specified then the variable $Database is used: it is defined by Connect-Mdbc or assigned explicitly before the call.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>MaxDocuments</maml:name>
+<maml:description>
+<maml:para>Sets the max number of documents in a capped collection in addition to MaxSize.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>MaxSize</maml:name>
+<maml:description>
+<maml:para>Sets the max size of a capped collection.</maml:para>
+</maml:description>
+</command:parameter>
+</command:parameters>
+<command:inputTypes>
+<command:inputType>
+<dev:type>
+<maml:name>-</maml:name>
+</dev:type>
+</command:inputType>
+</command:inputTypes>
+<command:returnValues>
+<command:returnValue>
+<dev:type>
+<maml:name>-</maml:name>
+</dev:type>
+</command:returnValue>
+</command:returnValues>
+</command:command>
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+<command:details>
+<command:name>Invoke-MdbcCommand</command:name>
+<maml:description>
+<maml:para>Invokes a command for a database.</maml:para>
+</maml:description>
+<command:verb>Invoke</command:verb>
+<command:noun>MdbcCommand</command:noun>
+</command:details>
+<maml:description>
+<maml:para>This cmdlet is normally used in order to invoke commands not covered by C# driver or Mdbc helpers. See MongoDB manuals for available commands and their parameters.</maml:para>
+</maml:description>
+<command:syntax>
+<command:syntaxItem>
+<maml:name>Invoke-MdbcCommand</maml:name>
+<command:parameter required="true" position="1" >
+<maml:name>Command</maml:name>
+<command:parameterValue required="true">PSObject</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="2" >
+<maml:name>Value</maml:name>
+<command:parameterValue required="true">Object</command:parameterValue>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Database</maml:name>
+<command:parameterValue required="true">MongoDatabase</command:parameterValue>
+</command:parameter>
+</command:syntaxItem>
+</command:syntax>
+<command:parameters>
+<command:parameter required="true" position="1" >
+<maml:name>Command</maml:name>
+<maml:description>
+<maml:para>Either the name of command with no arguments or one argument or a JSON-like hashtable that defines a more complex command.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="2" >
+<maml:name>Value</maml:name>
+<maml:description>
+<maml:para>The argument value required by the command with one argument.</maml:para>
+</maml:description>
+</command:parameter>
+<command:parameter required="false" position="named" >
+<maml:name>Database</maml:name>
+<maml:description>
+<maml:para>The database instance. If it is not specified then the variable $Database is used: it is defined by Connect-Mdbc or assigned explicitly before the call.</maml:para>
+</maml:description>
+</command:parameter>
+</command:parameters>
+<command:inputTypes>
+<command:inputType>
+<dev:type>
+<maml:name>-</maml:name>
+</dev:type>
+</command:inputType>
+</command:inputTypes>
+<command:returnValues>
+<command:returnValue>
+<dev:type>
+<maml:name>Mdbc.Dictionary</maml:name>
+</dev:type>
+<maml:description>
+<maml:para>The response document wrapped by Mdbc.Dictionary.</maml:para>
+</maml:description>
+</command:returnValue>
+</command:returnValues>
+<command:examples>
+<command:example>
+<maml:title>-------------------------- EXAMPLE 1 --------------------------</maml:title>
+<dev:code># Invoke the command `serverStatus` just by name.
+
+Connect-Mdbc . test
+Invoke-MdbcCommand serverStatus</dev:code>
+</command:example>
+<command:example>
+<maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
+<dev:code># Connect to the database `test` and invoke the command with a
+# single parameter `global` with the `admin` database specified
+# explicitly (because the current is `test` and the command is
+# admin-only)
+
+Connect-Mdbc . test
+Invoke-MdbcCommand getLog global -Database $Server[&apos;admin&apos;]</dev:code>
+</command:example>
+<command:example>
+<maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
+<dev:code># Commands with more then one argument use JSON-like hashes.
+# The example command creates a capped collection with maximum
+# set to 5 documents, adds 10 documents, then gets all back (5
+# documents are expected).
+
+Connect-Mdbc . test z -NewCollection
+$null = Invoke-MdbcCommand @{create = &apos;z&apos;; capped = $true; size = 1kb; max = 5 }
+
+# set the default collection
+$Collection = $Database[&apos;z&apos;]
+
+# use it in two command implicitly
+1..10 | %{@{_id = $_}} | Add-MdbcData
+Get-MdbcData</dev:code>
+</command:example>
+</command:examples>
+<maml:relatedLinks>
+<maml:navigationLink>
+<maml:linkText>Commands</maml:linkText>
+<maml:uri>http://www.mongodb.org/display/DOCS/Commands</maml:uri>
+</maml:navigationLink>
+</maml:relatedLinks>
+</command:command>
+</helpItems>

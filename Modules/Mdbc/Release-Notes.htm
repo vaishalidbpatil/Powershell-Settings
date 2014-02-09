@@ -1,0 +1,192 @@
+﻿<html><title>Release-Notes</title><body>
+<h1>Mdbc Release Notes</h1>
+<h2>v3.0.1</h2>
+<p>C# driver 1.7.1</p>
+<h2>v3.0.0</h2>
+<p>This version adopts major changes in C# driver 1.7.0. The driver is compatible
+with existing code. In contrast, Mdbc introduces new and breaking changes now.</p>
+<p>The switch <code>Safe</code> and the parameter <code>SafeMode</code> in writing commands are replaced
+with the parameter <code>WriteConcern</code> (<code>Acknowledged</code> by default). Some cmdlets
+that used to fail silently may write PowerShell errors.</p>
+<p>The switch <code>Result</code> used to enable safe writes implicitly. Now it is not
+related to write concern, it just tells to output a result object.</p>
+<p><code>Connect-Mdbc</code> drops the trick with <code>/?</code>. It was introduced mostly for shorter
+connection strings like <code>/?safe=true</code>. Now they are not so useful.</p>
+<p>For other details see the driver release notes and new documentation.</p>
+<h2>v2.1.3</h2>
+<p>C# driver 1.6.1</p>
+<p><code>Get-MongoFile.ps1</code>: By default the search is for a regex pattern, not name.</p>
+<h2>v2.1.2</h2>
+<p>C# driver 1.6, MongoDB 2.2</p>
+<h2>v2.1.1</h2>
+<p>C# driver 1.5</p>
+<p><code>New-MdbcQuery</code> does not support the parameter <code>Nor</code>.</p>
+<h2>v2.1.0</h2>
+<p>New cmdlet <code>Invoke-MdbcCommand</code> for invoking any MongoDB commands including not
+covered by Mdbc or C# driver helpers. Mdbc becomes an interactive MongoDB shell
+on PowerShell steroids. NOTE: The parameters are not perhaps stabilized, they
+may depend on the feedback and suggestions.</p>
+<p>Interactive profile <em>Mdbc.ps1</em></p>
+<ul>
+<li>New global function <code>Get-MdbcHelp</code> gets help for MongoDB commands.</li>
+<li>New aliases <code>imc ~ Invoke-MdbcCommand, gmh ~ Get-MdbcHelp</code>.</li>
+</ul>
+<h2>v2.0.0</h2>
+<h3>New concept of the default server, database, and collection</h3>
+<p>In many cases the same collection variable is used in commands repeatedly. In
+order to avoid this redundancy this version introduces semi-automatic variables
+<code>$Server</code>, <code>$Database</code>, and <code>$Collection</code> and changes the role of <code>Collection</code>
+and <code>Database</code> parameters.</p>
+<p>This change is breaking but easy to adopt. In scripts dealing with a single
+collection the collection argument should be simply removed, the default
+<code>$Collection</code> is used automatically. Alternatively, any collection can be
+specified explicitly with the named parameter <code>Collection</code>.</p>
+<p>Cmdlet <code>Connect-Mdbc</code></p>
+<ul>
+<li>Renamed parameters <code>Database -&gt; DatabaseName, Collection -&gt; CollectionName</code>.</li>
+<li>Instead of returning a server, database, or collection object the cmdlet
+  creates their variables in the current scope. By default they are
+  <code>$Server, $Database, $Collection</code>.</li>
+<li>New parameters <code>ServerVariable, DatabaseVariable, CollectionVariable</code> can be
+  used when several servers, databases, or collections are used in the same
+  scope.</li>
+</ul>
+<p>Cmdlets <code>*-MdbcData</code></p>
+<ul>
+<li>The parameter <code>Collection</code> changed from positional (0) to named. It should be
+  specified explicitly or not used at all. In the latter case the current
+  variable <code>$Collection</code> is used.</li>
+</ul>
+<p>Cmdlet <code>Add-MdbcCollection</code></p>
+<ul>
+<li>The parameter <code>Database</code> changed from positional (0) to named. It should be
+  specified explicitly or not used at all. In the latter case the current
+  variable <code>$Database</code> is used.</li>
+</ul>
+<h3>Changed safe mode output</h3>
+<p>Cmdlets <code>Add-MdbcData</code>, <code>Update-MdbcData</code>, and <code>Remove-MdbcData</code> do not write
+safe mode results to output unless the new switch <code>Result</code> is used. In other
+words, without <code>Result</code> they do not output anything regardless of the safe
+mode.</p>
+<p>If a safe mode result indicates an error then these cmdlets write an error. The
+result object is attached to the error record. As usual, to fail or not to fail
+depends on the current error action settings.</p>
+<h3>Other changes</h3>
+<p>Cmdlet <code>New-MdbcData</code></p>
+<ul>
+<li>Renamed parameters <code>DocumentId -&gt; Id</code>, <code>NewDocumentId -&gt; NewId</code>. The old
+  names came from the C# driver where they were recently declared obsolete.</li>
+</ul>
+<p>Cmdlet <code>Invoke-MdbcMapReduce</code></p>
+<ul>
+<li>Renamed parameter <code>Result -&gt; ResultVariable</code> for consistency. The old name
+  <code>Result</code> still works as partial but it is recommended to use the new name.</li>
+</ul>
+<h2>v1.5.0</h2>
+<p>New cmdlet <code>Invoke-MdbcMapReduce</code>. The parameters are not yet stabilized and
+may change. <strong>NOTE:</strong> the <code>SortBy</code> requires an index though this is not
+documented well (or it might be a bug).</p>
+<p>Removed obsolete parameter aliases: <code>Limit</code> and <code>Select</code> of <code>Get-MdbcData</code> (use
+<code>First</code> and <code>Property</code>) and <code>Select</code> of <code>New-MdbcData</code> (use <code>Property</code>).</p>
+<p>Custom objects with the property <code>_id</code> can be used where a query is expected.
+For example, objects from <code>Get-MdbcData -AsCustomObject</code> can be passed in
+<code>Remove-MdbcData</code>, <code>Update-MdbcData</code>, and <code>Get-MdbcData</code> as queries.</p>
+<p><code>New-MdbcQuery -And|Or|Nor</code> - in addition to query objects arguments can be any
+expressions convertible to queries (e.g. <code>@{Length = @{'$gt' = 1gb}}, @{..}</code>).</p>
+<p><em>Mdbc.ps1</em></p>
+<ul>
+<li>The parameter <code>DatabaseName</code> accepts wildcards. If it is not resolved to an
+  existing database name then the script prints all database names and exits.</li>
+<li>New operator helpers <code>$name = '$name'</code> for query and update operators may
+  reduce typing and typos and make expressions to look more like JSON.</li>
+</ul>
+<h2>v1.4.0</h2>
+<p><strong>Obsolete parameters</strong>: The following parameters were renamed or removed in
+order to follow PS guidelines; renamed still work but they will be removed in
+vNext:</p>
+<ul>
+<li><code>Update-MdbcData</code> - removed obsolete <code>Updates</code>, use <code>Update</code>.</li>
+<li><code>Get-MdbcData</code> - renamed <code>Limit -&gt; First</code>, <code>Select -&gt; Property</code>;</li>
+<li><code>New-MdbcData</code> - renamed <code>Select -&gt; Property</code>.</li>
+</ul>
+<p>Cmdlet <code>Get-MdbcData</code></p>
+<ul>
+<li>New switch <code>AsCustomObject</code> tells to get documents represented by PS objects.
+  They are more convenient in some use cases, especially interactive.</li>
+<li>New parameter <code>Last</code>. There is no analogue in the driver but in PowerShell it
+  seems to be useful, especially in interactive sessions.</li>
+</ul>
+<p>Removed the module script <em>Mdbc.psm1</em> with its functions <code>Convert-MdbcData</code>
+(redundant, <code>Get-MdbcData</code> can now do this much more effectively) and
+<code>Convert-MdbcJson</code> (not really useful in PowerShell).</p>
+<p>Demo helper <em>Mdbc.ps1</em>: renamed aliases for conformance with PS guidelines.</p>
+<h2>v1.3.0</h2>
+<p>Cmdlet <code>New-MdbcQuery</code></p>
+<ul>
+<li><strong>Breaking change</strong>. Revised parameters <code>And</code>, <code>Nor</code>, and <code>Or</code>. <code>And</code> cannot
+  be omitted now. <code>Nor</code> and <code>Or</code> are not switches but, just as <code>And</code>, arrays of
+  query expressions. This design is simpler and reduces chances of misuse.</li>
+</ul>
+<p>Cmdlet <code>Update-MdbcData</code></p>
+<ul>
+<li><strong>Obsolete parameter name</strong>. The parameter <code>Updates</code> was renamed to <code>Update</code>.
+  The old name still works as an alias but it will be removed in vNext.</li>
+</ul>
+<p>Cmdlet <code>Get-MdbcData</code></p>
+<ul>
+<li>New parameter <code>As</code> for getting strongly typed data (existing or added
+  on-the-fly ad-hoc types, see <em>Test-Get-As.ps1</em>).</li>
+<li>New parameters <code>Remove</code>, <code>Update</code>, <code>New</code>, <code>Add</code>. They provide <code>FindAndRemove</code>
+  and <code>FindAndModify</code> capabilities.</li>
+<li>New parameters <code>Distinct</code> and <code>SortBy</code>. The latter is used for standard
+  queries and new <code>Update</code> and <code>Remove</code> modes.</li>
+<li>Removed redundant switch <code>Size</code>. The switch <code>Count</code> does exactly the same job
+  when used together with <code>Limit</code> and <code>Skip</code>.</li>
+<li>Introduced parameter sets which prevent abuse of parameters. CAUTION: This
+  change is potentially breaking, existing calls with meaningless parameter
+  combinations will fail.</li>
+</ul>
+<p>New helper script <em>Mdbc.ps1</em> adds helpers for interactive use. Use it only as
+the example and base for your own interactive helpers. This script reflects
+personal preferences, its features may not be suitable for all scenarios and
+they may change at any time.</p>
+<p>Added tests covering new features. Adapted scripts and tests to changes.</p>
+<h2>v1.2.0</h2>
+<p>New cmdlet <code>Add-MdbcCollection</code>, mostly for creation of capped collections.</p>
+<p><em>Update-MongoFiles.ps1</em> - amended removal of unknown and orphan data.</p>
+<h2>v1.1.0</h2>
+<p>C# driver 1.4.2 (official).</p>
+<p>Avoided use of deprecated API.</p>
+<p>&quot;.&quot; as the connection string uses the driver default instead of duplicating.</p>
+<p>Breaking change (easy to fix): removed aliases <code>query</code> and <code>update</code>. Replace
+them with <code>New-MdbcQuery</code> and <code>New-MdbcUpdate</code> or use your own aliases. The
+reasons: a) aliases are mostly for interactive use, up to a user; b) <code>query</code>
+conflicts with <code>query.exe</code> (the alias wins but...); c) these two particular
+aliases used to cause subtle PowerShell issues on module updates.</p>
+<h2>v1.0.9</h2>
+<p>C# driver 1.4.2.33691</p>
+<h2>v1.0.8</h2>
+<p>C# driver v1.4.1 patched for <a href="https://jira.mongodb.org/browse/CSHARP-447">CSHARP-447</a>.</p>
+<p>Adapted for <a href="https://jira.mongodb.org/browse/CSHARP-446">CSHARP-446</a>.</p>
+<p>Amended tests.</p>
+<h2>v1.0.6, v1.0.7</h2>
+<p>Fixed weird silent PS errors on exporting module aliases.</p>
+<h2>v1.0.5</h2>
+<p>C# driver v1.4.0.</p>
+<p>Amended conversion of <code>null</code> and <code>BsonNull</code>.</p>
+<p><code>Update-MongoFiles.ps1</code> - updated for the latest version of Split-Pipeline.</p>
+<h2>v1.0.4</h2>
+<p>Bug: <code>Update-MongoFiles.ps1 -Split</code> does not remove missing file records. Fixed.</p>
+<h2>v1.0.3</h2>
+<p>New switch Split in the script Update-MongoFiles.ps1 tells to perform parallel
+data processing and improve performance for large directories or entire drives.
+It requires the PowerShell module SplitPipeline (it is not needed if Split is
+not used). SplitPipeline may be useful for other database related tasks, too,
+because processing of large data sets is typical.</p>
+<h2>v1.0.2</h2>
+<p>C# driver v1.3.1.</p>
+<h2>v1.0.1</h2>
+<p>C# driver v1.3.</p>
+<p>Minor changes in tests and project infrastructure.</p>
+
+</body></html>

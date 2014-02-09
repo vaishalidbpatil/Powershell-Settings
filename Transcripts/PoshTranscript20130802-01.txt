@@ -1,0 +1,1282 @@
+C:\Users\jr286576\Temp> ls
+
+
+    Directory: C:\Users\jr286576\Temp
+
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+d----         7/30/2013   8:49 AM            hfny
+d----         7/31/2013  10:36 PM            HFNY.git
+d----         6/30/2013  10:18 PM            HFNY.git.last
+d----         7/12/2013   9:47 PM            HFNY.git.tmp
+d----          8/1/2013   7:21 PM            HFNY.sql.git
+d----         5/26/2013   7:05 PM            Sleeping With Sirens - Feel (2013)
+-a---         6/30/2013   7:36 PM        326 authors-transform.txt
+-a---         7/29/2013  10:12 PM   47367616 HFNY.git.7z
+-a---         7/29/2013  10:19 PM   42920122 HFNY.git.post-repack.7z
+-a---         7/30/2013   9:01 AM   44667131 HFNY.git.Pre-rebase.7z
+
+
+C:\Users\jr286576\Temp> cd hfny.git
+C:\Users\jr286576\Temp\hfny.git [master +2 ~0 -0 !]> git config -l
+core.symlinks=false
+core.autocrlf=true
+color.diff=auto
+color.status=auto
+color.branch=auto
+color.interactive=true
+pack.packsizelimit=2g
+help.format=html
+http.sslcainfo=/bin/curl-ca-bundle.crt
+sendemail.smtpserver=/bin/msmtp.exe
+diff.astextplain.textconv=astextplain
+rebase.autosquash=true
+user.name=Jay Robohn
+user.email=jayrobot@gmail.com
+core.autocrlf=false
+core.editor="C:/Program Files (x86)/GitExtensions/GitExtensions.exe" fileeditor
+merge.tool=TortoiseMerge
+diff.guitool=winmerge
+difftool.TortoiseMerge.path=C:/Program Files/TortoiseGit/bin/TortoiseGitMerge.exe
+difftool.winmerge.path=C:/Program Files (x86)/WinMerge/winmergeu.exe
+difftool.winmerge.cmd="C:/Program Files (x86)/WinMerge/winmergeu.exe" -e -u "$LOCAL" "$REMOTE"
+mergetool.TortoiseMerge.path=C:/Program Files/TortoiseGit/bin/TortoiseGitMerge.exe
+mergetool.TortoiseMerge.cmd="C:/Program Files/TortoiseGit/bin/TortoiseGitMerge.exe" -base:"$BASE" -mine:"$LOCAL" -theirs:"$REMOTE" -merged:"$MERGED"
+core.repositoryformatversion=0
+core.filemode=false
+core.bare=false
+core.logallrefupdates=true
+core.symlinks=false
+core.ignorecase=true
+core.hidedotfiles=dotGitOnly
+svn-remote.svn.nometadata=1
+svn-remote.svn.url=https://169.226.105.79:8443/svn/HFNY
+svn-remote.svn.fetch=trunk:refs/remotes/trunk
+svn-remote.svn.branches=branches/*:refs/remotes/*
+svn-remote.svn.tags=tags/*:refs/remotes/tags/*
+svn.authorsfile=c:/Users/jr286576/Temp/authors-transform.txt
+remote.origin.url=https://jayrobot@bitbucket.org/jayrobot/hfny.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+branch.CodeOverhaulForNewSchema.remote=origin
+branch.CodeOverhaulForNewSchema.merge=refs/heads/CodeOverhaulForNewSchema
+branch.HFNY.FormPrinting.remote=origin
+branch.HFNY.FormPrinting.merge=refs/heads/HFNY.FormPrinting
+branch.master.remote=origin
+branch.master.merge=refs/heads/master
+gui.wmstate=normal
+gui.geometry=887x427+175+175 171 192
+C:\Users\jr286576\Temp\hfny.git [master +2 ~0 -0 !]> git log
+commit 256653599b46ce6e7905c4983b7da7495ae4ff95
+Merge: 7fdf30c b740b46
+Author: Jay Robohn <jayrobot@gmail.com>
+Date:   Wed Jul 31 22:35:47 2013 -0400
+
+    Merge branch 'master' of https://bitbucket.org/jayrobot/hfny
+
+commit 7fdf30cc752303bf1b77f7eb1475bea5cfdc71fd
+Author: Jay Robohn <jayrobot@gmail.com>
+Date:   Wed Jul 31 22:34:28 2013 -0400
+
+    Update for fetches since July 12
+
+commit 744a79686c7e08d556af4a4968426544f8431d21
+Author: Chun Dar Chen <cchen2@albany.edu>
+Date:   Wed Jul 31 14:30:10 2013 +0000
+
+    Fix father advocate calculation for unique families by type of home visit activities report
+
+commit 9f0ac8ae41af65ec4986b6d23c0bf3d4b6418f21
+Author: Jay Robohn <jrobohn@albany.edu>
+Date:   Tue Jul 30 17:58:31 2013 +0000
+
+    Fix bug in display of direct service time
+
+commit 9d47daa2b8cb031efe5c1f14dac160bb19326405
+Author: Jay Robohn <jrobohn@albany.edu>
+Date:   Tue Jul 30 17:48:31 2013 +0000
+
+    Updated form dates
+
+commit 21f41ef808ebfa1203a0be16317a65b62c570216
+Author: Jay Robohn <jrobohn@albany.edu>
+C:\Users\jr286576\Temp\hfny.git [master +2 ~0 -0 !]> g info
+git: 'info' is not a git command. See 'git --help'.
+
+Did you mean one of these?
+        init
+        mailinfo
+C:\Users\jr286576\Temp\hfny.git [master +2 ~0 -0 !]> git branch -a
+  CodeOverhaulForNewSchema
+  HFNY.FormPrinting
+* master
+  remotes/CodeOverhaulForNewSchema
+  remotes/DarPageChanges
+  remotes/DarPageChanges@21
+  remotes/DarPageChanges@22
+  remotes/DarPageChanges@23
+  remotes/DarPageChanges@26
+  remotes/HFNY
+  remotes/HFNY.Admin
+  remotes/HFNY.Admin@21
+  remotes/HFNY.Admin@22
+  remotes/HFNY.Admin@23
+  remotes/HFNY.Admin@89
+  remotes/HFNY.Forms
+  remotes/HFNY.Forms@21
+  remotes/HFNY.Forms@22
+  remotes/HFNY.Forms@23
+  remotes/HFNY.Forms@78
+  remotes/HFNY.MIECHV
+  remotes/HFNY.MIECHV.Apycom.Nav
+  remotes/HFNY.ReportCatalog
+  remotes/HFNY.ReportCatalog.CriteriaIntegration
+  remotes/HFNY.ReportCatalogCriteriaIntegration
+  remotes/HFNY.TransferCase
+  remotes/HFNY.dataTables
+  remotes/HFNY.demo
+  remotes/HFNY@11
+  remotes/HFNY@21
+  remotes/origin/CodeOverhaulForNewSchema
+  remotes/origin/HFNY.FormPrinting
+  remotes/origin/master
+  remotes/trunk
+C:\Users\jr286576\Temp\hfny.git [master +2 ~0 -0 !]> git config -l
+core.symlinks=false
+core.autocrlf=true
+color.diff=auto
+color.status=auto
+color.branch=auto
+color.interactive=true
+pack.packsizelimit=2g
+help.format=html
+http.sslcainfo=/bin/curl-ca-bundle.crt
+sendemail.smtpserver=/bin/msmtp.exe
+diff.astextplain.textconv=astextplain
+rebase.autosquash=true
+user.name=Jay Robohn
+user.email=jayrobot@gmail.com
+core.autocrlf=false
+core.editor="C:/Program Files (x86)/GitExtensions/GitExtensions.exe" fileeditor
+merge.tool=TortoiseMerge
+diff.guitool=winmerge
+difftool.TortoiseMerge.path=C:/Program Files/TortoiseGit/bin/TortoiseGitMerge.exe
+difftool.winmerge.path=C:/Program Files (x86)/WinMerge/winmergeu.exe
+difftool.winmerge.cmd="C:/Program Files (x86)/WinMerge/winmergeu.exe" -e -u "$LOCAL" "$REMOTE"
+mergetool.TortoiseMerge.path=C:/Program Files/TortoiseGit/bin/TortoiseGitMerge.exe
+mergetool.TortoiseMerge.cmd="C:/Program Files/TortoiseGit/bin/TortoiseGitMerge.exe" -base:"$BASE" -mine:"$LOCAL" -theirs:"$REMOTE" -merged:"$MERGED"
+core.repositoryformatversion=0
+core.filemode=false
+core.bare=false
+core.logallrefupdates=true
+core.symlinks=false
+core.ignorecase=true
+core.hidedotfiles=dotGitOnly
+svn-remote.svn.nometadata=1
+svn-remote.svn.url=https://169.226.105.79:8443/svn/HFNY
+svn-remote.svn.fetch=trunk:refs/remotes/trunk
+svn-remote.svn.branches=branches/*:refs/remotes/*
+svn-remote.svn.tags=tags/*:refs/remotes/tags/*
+svn.authorsfile=c:/Users/jr286576/Temp/authors-transform.txt
+remote.origin.url=https://jayrobot@bitbucket.org/jayrobot/hfny.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+branch.CodeOverhaulForNewSchema.remote=origin
+branch.CodeOverhaulForNewSchema.merge=refs/heads/CodeOverhaulForNewSchema
+branch.HFNY.FormPrinting.remote=origin
+branch.HFNY.FormPrinting.merge=refs/heads/HFNY.FormPrinting
+branch.master.remote=origin
+branch.master.merge=refs/heads/master
+gui.wmstate=normal
+gui.geometry=887x427+175+175 171 192
+C:\Users\jr286576\Temp\hfny.git [master +2 ~0 -0 !]> gitk
+C:\Users\jr286576\Temp\hfny.git [master +2 ~0 -0 !]> g status
+# On branch master
+# Your branch is ahead of 'origin/master' by 36 commits.
+#   (use "git push" to publish your local commits)
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       GitCommandLog.txt
+#       HFNY/HFNY.sln
+nothing added to commit but untracked files present (use "git add" to track)
+C:\Users\jr286576\Temp\hfny.git [master +2 ~0 -0 !]> cd ..
+C:\Users\jr286576\Temp> ls
+
+
+    Directory: C:\Users\jr286576\Temp
+
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+d----         7/30/2013   8:49 AM            hfny
+d----         7/31/2013  10:36 PM            HFNY.git
+d----         6/30/2013  10:18 PM            HFNY.git.last
+d----         7/12/2013   9:47 PM            HFNY.git.tmp
+d----          8/1/2013   7:21 PM            HFNY.sql.git
+d----         5/26/2013   7:05 PM            Sleeping With Sirens - Feel (2013)
+-a---         6/30/2013   7:36 PM        326 authors-transform.txt
+-a---         7/29/2013  10:12 PM   47367616 HFNY.git.7z
+-a---         7/29/2013  10:19 PM   42920122 HFNY.git.post-repack.7z
+-a---         7/30/2013   9:01 AM   44667131 HFNY.git.Pre-rebase.7z
+
+
+C:\Users\jr286576\Temp> cd hfny.git
+C:\Users\jr286576\Temp\hfny.git [master +2 ~0 -0 !]> g log
+commit 256653599b46ce6e7905c4983b7da7495ae4ff95
+Merge: 7fdf30c b740b46
+Author: Jay Robohn <jayrobot@gmail.com>
+Date:   Wed Jul 31 22:35:47 2013 -0400
+
+    Merge branch 'master' of https://bitbucket.org/jayrobot/hfny
+
+commit 7fdf30cc752303bf1b77f7eb1475bea5cfdc71fd
+Author: Jay Robohn <jayrobot@gmail.com>
+Date:   Wed Jul 31 22:34:28 2013 -0400
+
+    Update for fetches since July 12
+
+commit 744a79686c7e08d556af4a4968426544f8431d21
+Author: Chun Dar Chen <cchen2@albany.edu>
+Date:   Wed Jul 31 14:30:10 2013 +0000
+
+    Fix father advocate calculation for unique families by type of home visit activities report
+
+commit 9f0ac8ae41af65ec4986b6d23c0bf3d4b6418f21
+Author: Jay Robohn <jrobohn@albany.edu>
+Date:   Tue Jul 30 17:58:31 2013 +0000
+
+    Fix bug in display of direct service time
+
+commit 9d47daa2b8cb031efe5c1f14dac160bb19326405
+Author: Jay Robohn <jrobohn@albany.edu>
+Date:   Tue Jul 30 17:48:31 2013 +0000
+
+    Updated form dates
+
+commit 21f41ef808ebfa1203a0be16317a65b62c570216
+Author: Jay Robohn <jrobohn@albany.edu>
+C:\Users\jr286576\Temp\hfny.git [master +2 ~0 -0 !]> git svn fetch
+        M       HFNY/Forms/HFNY_Intake.pdf
+        M       HFNY/Forms/HFNY_Kempe.pdf
+        M       HFNY/Forms/HFNY_TargetChildID.pdf
+        M       HFNY/Forms/HFNY_Followup.pdf
+r1305 = 56f26ba33f7e11983b2e52926e80e743eff1ec5e (refs/remotes/trunk)
+        M       HFNY/BusinessEntities/beTCID.vb
+r1306 = 6f4af526de6ff68dcd853af9c89d56b76c4ceb9f (refs/remotes/trunk)
+C:\Users\jr286576\Temp\hfny.git [master +2 ~0 -0 !]> git svn rebase
+Unable to determine upstream SVN information from working tree history
+
+C:\Users\jr286576\Temp\hfny.git [master +2 ~0 -0 !]> git reset -soft refs/remotes/trunk
+error: did you mean `--soft` (with two dashes ?)
+C:\Users\jr286576\Temp\hfny.git [master +2 ~0 -0 !]> git reset --soft refs/remotes/trunk
+C:\Users\jr286576\Temp\hfny.git [master +1 ~36 -7 | +2 ~0 -0 !]> g log
+commit 6f4af526de6ff68dcd853af9c89d56b76c4ceb9f
+Author: Chris Papas <cpapas@albany.edu>
+Date:   Thu Aug 1 15:42:13 2013 +0000
+
+    'FIX Bug HW883 - do NOT update caseprogram level information if a future level exists
+
+commit 56f26ba33f7e11983b2e52926e80e743eff1ec5e
+Author: Jay Robohn <jrobohn@albany.edu>
+Date:   Thu Aug 1 13:08:44 2013 +0000
+
+    Regenerated form PDFs due to missing HFNY logo on FollowUp form and larger sizes
+
+commit 744a79686c7e08d556af4a4968426544f8431d21
+Author: Chun Dar Chen <cchen2@albany.edu>
+Date:   Wed Jul 31 14:30:10 2013 +0000
+
+    Fix father advocate calculation for unique families by type of home visit activities report
+
+commit 9f0ac8ae41af65ec4986b6d23c0bf3d4b6418f21
+Author: Jay Robohn <jrobohn@albany.edu>
+Date:   Tue Jul 30 17:58:31 2013 +0000
+
+    Fix bug in display of direct service time
+
+commit 9d47daa2b8cb031efe5c1f14dac160bb19326405
+Author: Jay Robohn <jrobohn@albany.edu>
+Date:   Tue Jul 30 17:48:31 2013 +0000
+
+    Updated form dates
+
+commit 21f41ef808ebfa1203a0be16317a65b62c570216
+Author: Jay Robohn <jrobohn@albany.edu>
+Date:   Tue Jul 30 12:30:00 2013 +0000
+C:\Users\jr286576\Temp\hfny.git [master +1 ~36 -7 | +2 ~0 -0 !]> h
+
+  Id CommandLine
+  -- -----------
+   1 z hfny.git
+   2 git status
+   3 git fetch
+   4 git remotes -l
+   5 git remote -l
+   6 git remote -v
+   7 z hfny.git
+   8 z hfny.git
+   9 cd ../hfny.git
+  10 git remote -v
+  11 git fetch origin
+  12 git fetch
+  13 git svn fetch
+  14 ls hfny/forms
+  15 git status
+  16 git svn status
+  17 cd ..
+  18 ls
+  19 & "\Program Files\7-Zip\7z.exe"
+  20 & "\Program Files\7-Zip\7z.exe" x hfny.git.saved\
+  21 & "\Program Files\7-Zip\7z.exe" x hfny.git.7z hfny.git.saved\
+  22 & "\Program Files\7-Zip\7z.exe" x hfny.git.7z -o hfny.git.saved\
+  23 & "\Program Files\7-Zip\7z.exe" x hfny.git.7z -ohfny.git.saved\
+  24 & "\Program Files\7-Zip\7z.exe" x hfny.git.7z *.* -ohfny.git.saved\
+  25 ls
+  26 cd .\hfny
+  27 ls
+  28 cd hfny.git
+  29 git status
+  30 git svn status
+  31 git svn fetch
+  32 cls
+  33 git status
+  34 git help log
+  35 git log
+  36 git svn rebase --local
+  37 git svn rebase
+  38 git reset --soft refs/remotes/git-svn
+  39 git reset --soft .git/refs/remotes/git-svn
+  40 git merge --ff-only git-svn
+  41 git merge --ff-only git-svn
+  42 git svn fetch
+  43 cd ..\..\hfny.git
+  44 git svn fetch
+  45 git show-ref
+  46 git svn rebase
+  47 git status
+  48 git show-ref
+  49 git show-ref
+  50 git log
+  51 git svn fetch
+  52 git log
+  53 git svn rebase
+  54 git reset --soft refs/remotes/trunk
+  55 git status
+  56 h
+  57 cd alias:
+  58 ls
+  59 get-help Set-Alias
+  60 get-help Set-Alias -name g -value github
+  61 Set-Alias -name g -value github
+  62 ls g*
+  63 c:
+  64 g status
+  65 ls
+  66 cd alias:
+  67 Set-Alias -name g -value git
+  68 Set-Alias -name gs -value git status
+  69 Set-Alias -name gs -value "git status"
+  70 Set-Alias -name gl -value "git log"
+  71 Set-Alias -name gl -value "git log"ls g*
+  72 ls g*
+  73 Set-Alias -name glg -value "git log"
+  74 Set-Alias -name gcm -value "git commit"
+  75 Set-Alias -name gco -value "git commit"
+  76 ls g*
+  77 c:
+  78 gco -m "Update for fetches since July 12"
+  79 git commit -m "Update for fetches since July 12"
+  80 gs
+  81 git staus
+  82 git status
+  83 git pull
+  84 git status
+  85 h
+  86 h > GitCommandLog.txt
+  87 ls
+  88 cd alias:
+  89 Set-Alias -name glg -value "git.exe log"
+  90 Set-Alias -name gco -value "git.exe commit"
+  91 Set-Alias -name gs -value "git.exe status"
+  92 ls g*
+  93 c:
+  94 gs
+  95 g log
+  96 cd ..
+  97 git svn init -s https://169.226.105.79:8443/svn/HFNY.sql
+  98 ls
+  99 md HFNY.sql.git
+ 100 cd HFNY.sql.git
+ 101 git svn init -s https://169.226.105.79:8443/svn/HFNY.sql
+ 102 git svn fetch
+ 103 ls
+ 104 cd .\hfny.jay
+ 105 ls
+ 106 cd ".\Stored Procedures"
+ 107 ls
+ 108 cd ..
+ 109 g log
+ 110 cd ..
+ 111 ls
+ 112 git remote add origin https://jayrobot@bitbucket.org/jayrobot/hfny.sql.git
+ 113 git push -u origin --all   # to push up the repo for the first time
+ 114 git push -u origin --all   # to push up the repo for the first time
+ 115 cd ..
+ 116 ls
+ 117 cls
+ 118 ls
+ 119 cd hfny.git
+ 120 git config -l
+ 121 git log
+ 122 g info
+ 123 git branch -a
+ 124 git config -l
+ 125 gitk
+ 126 g status
+ 127 cd ..
+ 128 ls
+ 129 cd hfny.git
+ 130 g log
+ 131 git svn fetch
+ 132 git svn rebase
+ 133 git reset -soft refs/remotes/trunk
+ 134 git reset --soft refs/remotes/trunk
+ 135 g log
+
+
+C:\Users\jr286576\Temp\hfny.git [master +1 ~36 -7 | +2 ~0 -0 !]> git status
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 36 and 1 different commit each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#       new file:   .gitignore
+#       modified:   HFNY/Admin/AdministrationHome.aspx
+#       modified:   HFNY/Admin/FormReviewOptions.aspx
+#       modified:   HFNY/BusinessEntities/Validation/beBasicCaseInformation.vb
+#       modified:   HFNY/BusinessEntities/beTCID.vb
+#       modified:   HFNY/Default.aspx
+#       modified:   HFNY/Forms/HFNY_Followup.pdf
+#       modified:   HFNY/Forms/HFNY_Intake.pdf
+#       modified:   HFNY/Forms/HFNY_Kempe.pdf
+#       modified:   HFNY/Forms/HFNY_TargetChildID.pdf
+#       modified:   HFNY/HFNY.vbproj
+#       modified:   HFNY/Pages/CaseFilters.aspx
+#       modified:   HFNY/Pages/CaseFilters.aspx.vb
+#       modified:   HFNY/Pages/Forms.aspx
+#       modified:   HFNY/Pages/HomeVisitLog.aspx
+#       modified:   HFNY/Pages/HomeVisitLog.aspx.designer.vb
+#       modified:   HFNY/Pages/HomeVisitLog.aspx.vb
+#       modified:   HFNY/Pages/HomeVisitLogs.aspx
+#       modified:   HFNY/Pages/Intake.aspx
+#       modified:   HFNY/Pages/Intake.aspx.designer.vb
+#       modified:   HFNY/Pages/Intake.aspx.vb
+#       modified:   HFNY/Pages/ServiceReferral.aspx
+#       modified:   HFNY/Pages/TCID.aspx
+#       modified:   HFNY/Pages/TCID.aspx.designer.vb
+#       modified:   HFNY/Pages/TCID.aspx.vb
+#       modified:   HFNY/Pages/WorkerForm.aspx.vb
+#       modified:   HFNY/Reports/XtraReports/Analysis/rptNYSFSWHomeVisitRecord_Summary.vb
+#       modified:   HFNY/Reports/XtraReports/Analysis/rptUniqueFamilyHomeVisitLogActivitySummary.Designer.vb
+#       modified:   HFNY/Reports/XtraReports/Credentialing/rptCredentialingAssessmentInfo.Designer.vb
+#       modified:   HFNY/Reports/XtraReports/Credentialing/rptCredentialingKempeAnalysis.Designer.vb
+#       deleted:    HFNY/Reports/XtraReports/DataRetrieval/dsFSWEnrolledCaseTickler.Designer.vb
+#       deleted:    HFNY/Reports/XtraReports/DataRetrieval/dsFSWEnrolledCaseTickler.xsc
+#       deleted:    HFNY/Reports/XtraReports/DataRetrieval/dsFSWEnrolledCaseTickler.xsd
+#       deleted:    HFNY/Reports/XtraReports/DataRetrieval/dsFSWEnrolledCaseTickler.xss
+#       modified:   HFNY/Reports/XtraReports/DataRetrieval/dsUniqueFamilyHomeVisitLogActivitySummary.Designer.vb
+#       modified:   HFNY/Reports/XtraReports/DataRetrieval/dsUniqueFamilyHomeVisitLogActivitySummary.xsd
+#       modified:   HFNY/Reports/XtraReports/Quarterlies/rptPrimaryCaretaker1Issues.vb
+#       deleted:    HFNY/Reports/XtraReports/Ticklers/rptFSWEnrolledCaseTickler.Designer.vb
+#       deleted:    HFNY/Reports/XtraReports/Ticklers/rptFSWEnrolledCaseTickler.resx
+#       deleted:    HFNY/Reports/XtraReports/Ticklers/rptFSWEnrolledCaseTickler.vb
+#       modified:   HFNY/Reports/XtraReports/Training/rptTraining_10_2_Orientation.Designer.vb
+#       modified:   HFNY/Reports/XtraReports/Training/rptTraining_10_2_Orientation.vb
+#       modified:   HFNY/Scripts/ReportCatalogCommon.js
+#       modified:   HFNY/Scripts/ReportCatalogViewer.js
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       GitCommandLog.txt
+#       HFNY/HFNY.sln
+C:\Users\jr286576\Temp\hfny.git [master +1 ~36 -7 | +2 ~0 -0 !]> git commit -a -m "Update for latest fetches"
+[master 10c0200] Update for latest fetches
+ 44 files changed, 3046 insertions(+), 9106 deletions(-)
+ create mode 100644 .gitignore
+ rewrite HFNY/Forms/HFNY_Followup.pdf (91%)
+ rewrite HFNY/Forms/HFNY_Intake.pdf (91%)
+ rewrite HFNY/Forms/HFNY_Kempe.pdf (86%)
+ rewrite HFNY/Forms/HFNY_TargetChildID.pdf (89%)
+ rewrite HFNY/Pages/HomeVisitLog.aspx (70%)
+ rewrite HFNY/Reports/XtraReports/Credentialing/rptCredentialingKempeAnalysis.Designer.vb (82%)
+ delete mode 100644 HFNY/Reports/XtraReports/DataRetrieval/dsFSWEnrolledCaseTickler.Designer.vb
+ delete mode 100644 HFNY/Reports/XtraReports/DataRetrieval/dsFSWEnrolledCaseTickler.xsc
+ delete mode 100644 HFNY/Reports/XtraReports/DataRetrieval/dsFSWEnrolledCaseTickler.xsd
+ delete mode 100644 HFNY/Reports/XtraReports/DataRetrieval/dsFSWEnrolledCaseTickler.xss
+ delete mode 100644 HFNY/Reports/XtraReports/Ticklers/rptFSWEnrolledCaseTickler.Designer.vb
+ delete mode 100644 HFNY/Reports/XtraReports/Ticklers/rptFSWEnrolledCaseTickler.resx
+ delete mode 100644 HFNY/Reports/XtraReports/Ticklers/rptFSWEnrolledCaseTickler.vb
+C:\Users\jr286576\Temp\hfny.git [master +2 ~0 -0 !]> git status
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 37 and 1 different commit each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       GitCommandLog.txt
+#       HFNY/HFNY.sln
+nothing added to commit but untracked files present (use "git add" to track)
+C:\Users\jr286576\Temp\hfny.git [master +2 ~0 -0 !]> git push
+warning: push.default is unset; its implicit value is changing in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the current behavior after the default changes, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+
+Password for 'https://jayrobot@bitbucket.org':
+To https://jayrobot@bitbucket.org/jayrobot/hfny.git
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'https://jayrobot@bitbucket.org/jayrobot/hfny.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Merge the remote changes (e.g. 'git pull')
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+C:\Users\jr286576\Temp\hfny.git [master +2 ~0 -0 !]> git pull
+Password for 'https://jayrobot@bitbucket.org':
+Merge made by the 'recursive' strategy.
+C:\Users\jr286576\Temp\hfny.git [master +2 ~0 -0 !]> git push
+warning: push.default is unset; its implicit value is changing in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the current behavior after the default changes, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+
+Password for 'https://jayrobot@bitbucket.org':
+Counting objects: 290, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (239/239), done.
+Writing objects: 100% (239/239), 1.89 MiB | 1.06 MiB/s, done.
+Total 239 (delta 175), reused 0 (delta 0)
+To https://jayrobot@bitbucket.org/jayrobot/hfny.git
+   b740b46..b7ca8f0  master -> master
+C:\Users\jr286576\Temp\hfny.git [master +2 ~0 -0 !]> h >> .\GitCommandLog.txt
+C:\Users\jr286576\Temp\hfny.git [master +2 ~0 -0 !]> z hfny.proto
+C:\Dev\HFNY-Prototype [master +3 ~4 -0 !]> g status
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   HFNY-Proto.sublime-project
+#       modified:   app/scripts/main.js
+#       modified:   bower.json
+#       modified:   package.json
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       app/CaseHome.aspx.designer_2.vb
+#       app/CaseHome.aspx_2.vb
+#       app/CaseHome_2.aspx
+no changes added to commit (use "git add" and/or "git commit -a")
+C:\Dev\HFNY-Prototype [master +3 ~4 -0 !]> z hfny.git
+C:\Users\jr286576\Temp\HFNY.git.tmp [master]> cd ../hfny.git
+C:\Users\jr286576\Temp\hfny.git [master +2 ~0 -0 !]> git status
+# On branch master
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       GitCommandLog.txt
+#       HFNY/HFNY.sln
+nothing added to commit but untracked files present (use "git add" to track)
+C:\Users\jr286576\Temp\hfny.git [master +2 ~0 -0 !]> git reset -soft refs/remotes/trunk
+error: did you mean `--soft` (with two dashes ?)
+C:\Users\jr286576\Temp\hfny.git [master +2 ~0 -0 !]> git reset --soft refs/remotes/trunk
+C:\Users\jr286576\Temp\hfny.git [master +1 ~36 -7 | +2 ~0 -0 !]> git svn log
+fatal: bad default revision 'refs/remotes/git-svn'
+------------------------------------------------------------------------
+C:\Users\jr286576\Temp\hfny.git [master +1 ~36 -7 | +2 ~0 -0 !]> git svn log --help
+------------------------------------------------------------------------
+C:\Users\jr286576\Temp\hfny.git [master +1 ~36 -7 | +2 ~0 -0 !]> git svn log r712
+fatal: ambiguous argument 'r712': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+------------------------------------------------------------------------
+C:\Users\jr286576\Temp\hfny.git [master +1 ~36 -7 | +2 ~0 -0 !]> g log
+commit 2175d9e7afea3b9d622a522a9c1ea3c213c79944
+Author: Devinder Singh Khalsa <dkhalsa@albany.edu>
+Date:   Fri Aug 2 16:45:59 2013 +0000
+
+    bug fix
+
+commit 9e7635522575c93239504a89e86783aadd8b1b78
+Author: Devinder Singh Khalsa <dkhalsa@albany.edu>
+Date:   Fri Aug 2 16:34:43 2013 +0000
+
+    Added more fields
+
+commit 0521ec5446e4e34fa6ec96d4a44fd2f2b9bcc160
+Author: Devinder Singh Khalsa <dkhalsa@albany.edu>
+Date:   Fri Aug 2 16:27:14 2013 +0000
+
+    bug fixes
+
+commit 6f4af526de6ff68dcd853af9c89d56b76c4ceb9f
+Author: Chris Papas <cpapas@albany.edu>
+Date:   Thu Aug 1 15:42:13 2013 +0000
+
+    'FIX Bug HW883 - do NOT update caseprogram level information if a future level exists
+
+commit 56f26ba33f7e11983b2e52926e80e743eff1ec5e
+Author: Jay Robohn <jrobohn@albany.edu>
+Date:   Thu Aug 1 13:08:44 2013 +0000
+
+    Regenerated form PDFs due to missing HFNY logo on FollowUp form and larger sizes
+
+commit 744a79686c7e08d556af4a4968426544f8431d21
+Author: Chun Dar Chen <cchen2@albany.edu>
+Date:   Wed Jul 31 14:30:10 2013 +0000
+C:\Users\jr286576\Temp\hfny.git [master +1 ~36 -7 | +2 ~0 -0 !]> g svn log
+fatal: bad default revision 'refs/remotes/git-svn'
+------------------------------------------------------------------------
+C:\Users\jr286576\Temp\hfny.git [master +1 ~36 -7 | +2 ~0 -0 !]> git svn rebase
+Unable to determine upstream SVN information from working tree history
+
+C:\Users\jr286576\Temp\hfny.git [master +1 ~36 -7 | +2 ~0 -0 !]> g status
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 3 and 3 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+nothing to commit, working directory clean
+C:\Users\jr286576\Temp\hfny.git [master]> git branch -a
+  CodeOverhaulForNewSchema
+  HFNY.FormPrinting
+* master
+  remotes/CodeOverhaulForNewSchema
+  remotes/DarPageChanges
+  remotes/DarPageChanges@21
+  remotes/DarPageChanges@22
+  remotes/DarPageChanges@23
+  remotes/DarPageChanges@26
+  remotes/HFNY
+  remotes/HFNY.Admin
+  remotes/HFNY.Admin@21
+  remotes/HFNY.Admin@22
+  remotes/HFNY.Admin@23
+  remotes/HFNY.Admin@89
+  remotes/HFNY.Forms
+  remotes/HFNY.Forms@21
+  remotes/HFNY.Forms@22
+  remotes/HFNY.Forms@23
+  remotes/HFNY.Forms@78
+  remotes/HFNY.MIECHV
+  remotes/HFNY.MIECHV.Apycom.Nav
+  remotes/HFNY.ReportCatalog
+  remotes/HFNY.ReportCatalog.CriteriaIntegration
+  remotes/HFNY.ReportCatalogCriteriaIntegration
+  remotes/HFNY.TransferCase
+  remotes/HFNY.dataTables
+  remotes/HFNY.demo
+  remotes/HFNY@11
+  remotes/HFNY@21
+  remotes/origin/CodeOverhaulForNewSchema
+  remotes/origin/HFNY.FormPrinting
+  remotes/origin/master
+  remotes/trunk
+C:\Users\jr286576\Temp\hfny.git [master]> git diff
+C:\Users\jr286576\Temp\hfny.git [master]> git status
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 3 and 3 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+nothing to commit, working directory clean
+C:\Users\jr286576\Temp\hfny.git [master]> git branch
+  CodeOverhaulForNewSchema
+  HFNY.FormPrinting
+* master
+C:\Users\jr286576\Temp\hfny.git [master]> git branch -a
+  CodeOverhaulForNewSchema
+  HFNY.FormPrinting
+* master
+  remotes/CodeOverhaulForNewSchema
+  remotes/DarPageChanges
+  remotes/DarPageChanges@21
+  remotes/DarPageChanges@22
+  remotes/DarPageChanges@23
+  remotes/DarPageChanges@26
+  remotes/HFNY
+  remotes/HFNY.Admin
+  remotes/HFNY.Admin@21
+  remotes/HFNY.Admin@22
+  remotes/HFNY.Admin@23
+  remotes/HFNY.Admin@89
+  remotes/HFNY.Forms
+  remotes/HFNY.Forms@21
+  remotes/HFNY.Forms@22
+  remotes/HFNY.Forms@23
+  remotes/HFNY.Forms@78
+  remotes/HFNY.MIECHV
+  remotes/HFNY.MIECHV.Apycom.Nav
+  remotes/HFNY.ReportCatalog
+  remotes/HFNY.ReportCatalog.CriteriaIntegration
+  remotes/HFNY.ReportCatalogCriteriaIntegration
+  remotes/HFNY.TransferCase
+  remotes/HFNY.dataTables
+  remotes/HFNY.demo
+  remotes/HFNY@11
+  remotes/HFNY@21
+  remotes/origin/CodeOverhaulForNewSchema
+  remotes/origin/HFNY.FormPrinting
+  remotes/origin/master
+  remotes/trunk
+C:\Users\jr286576\Temp\hfny.git [master]> git svn showignore
+git-svn - bidirectional operations between a single Subversion tree and git
+usage: git svn <command> [options] [arguments]
+
+Available commands:
+  blame            Show what revision and author last modified each line of a file
+                     --git-format
+  branch           Create a branch in the SVN repository
+                     --commit-url <arg>
+                     --destination, -d <arg>
+                     --dry-run, -n
+                     --message, -m <arg>
+                     --parents
+                     --tag, -t
+                     --username <arg>
+  clone            Initialize and fetch revisions
+                     --add-author-from
+                     --authors-file, -A <arg>
+                     --authors-prog <arg>
+                     --branches, --b=s@
+                     --config-dir <arg>
+                     --follow-parent, --follow!
+                     --ignore-paths <arg>
+                     --ignore-refs <arg>
+                     --include-paths <arg>
+                     --localtime
+                     --log-window-size <num>
+                     --minimize-url, --m!
+                     --no-auth-cache
+                     --no-checkout
+                     --no-metadata
+                     --placeholder-filename <arg>
+                     --prefix <arg>
+                     --preserve-empty-dirs
+                     --quiet, --q+
+                     --repack-flags, --repack-args, --repack-opts <arg>
+                     --repack <num>
+                     --revision, -r <arg>
+                     --rewrite-root <arg>
+                     --rewrite-uuid <arg>
+                     --shared <arg>
+                     --stdlayout, -s
+                     --tags, --t=s@
+                     --template <arg>
+                     --trunk, -T <arg>
+                     --use-log-author
+                     --use-svm-props
+                     --use-svnsync-props
+                     --username <arg>
+  commit-diff      Commit a diff between two trees
+                     --copy-similarity, -C <num>
+                     --edit, -e
+                     --file, -F <arg>
+                     --find-copies-harder
+                     -l <num>
+                     --message, -m <arg>
+                     --revision, -r <arg>
+                     --rmdir
+  create-ignore    Create a .gitignore per svn:ignore
+                     --revision, -r <num>
+  dcommit          Commit several diffs to merge with upstream
+                     --add-author-from
+                     --authors-file, -A <arg>
+                     --authors-prog <arg>
+                     --commit-url <arg>
+                     --config-dir <arg>
+                     --copy-similarity, -C <num>
+                     --dry-run, -n
+                     --edit, -e
+                     --fetch-all, --all
+                     --find-copies-harder
+                     --follow-parent, --follow!
+                     --ignore-paths <arg>
+                     --ignore-refs <arg>
+                     --include-paths <arg>
+                     --interactive, -i
+                     -l <num>
+                     --localtime
+                     --log-window-size <num>
+                     --mergeinfo <arg>
+                     --merge, -m, -M
+                     --no-auth-cache
+                     --no-checkout
+                     --no-rebase
+                     --quiet, --q+
+                     --repack-flags, --repack-args, --repack-opts <arg>
+                     --repack <num>
+                     --revision, -r <num>
+                     --rmdir
+                     --strategy, -s <arg>
+                     --use-log-author
+                     --username <arg>
+                     --verbose, -v
+  fetch            Download new revisions from SVN
+                     --add-author-from
+                     --authors-file, -A <arg>
+                     --authors-prog <arg>
+                     --config-dir <arg>
+                     --fetch-all, --all
+                     --follow-parent, --follow!
+                     --ignore-paths <arg>
+                     --ignore-refs <arg>
+                     --include-paths <arg>
+                     --localtime
+                     --log-window-size <num>
+                     --no-auth-cache
+                     --no-checkout
+                     --parent, -p
+                     --quiet, --q+
+                     --repack-flags, --repack-args, --repack-opts <arg>
+                     --repack <num>
+                     --revision, -r <arg>
+                     --use-log-author
+                     --username <arg>
+  find-rev         Translate between SVN revision numbers and tree-ish
+                     --after
+                     --before
+  gc               Compress unhandled.log files in .git/svn and remove index files in .git/svn
+  info             Show info about the latest SVN revision
+                     on the current branch
+                     --url
+  init             Initialize a repo for tracking (requires URL argument)
+                     --branches, --b=s@
+                     --config-dir <arg>
+                     --ignore-paths <arg>
+                     --ignore-refs <arg>
+                     --include-paths <arg>
+                     --minimize-url, --m!
+                     --no-auth-cache
+                     --no-metadata
+                     --prefix <arg>
+                     --rewrite-root <arg>
+                     --rewrite-uuid <arg>
+                     --shared <arg>
+                     --stdlayout, -s
+                     --tags, --t=s@
+                     --template <arg>
+                     --trunk, -T <arg>
+                     --use-svm-props
+                     --use-svnsync-props
+                     --username <arg>
+  log              Show commit logs
+                     --authors-file, -A <arg>
+                     --color
+                     --incremental
+                     --limit <num>
+                     --non-recursive
+                     --oneline
+                     --pager <arg>
+                     --revision, -r <arg>
+                     --show-commit
+                     --verbose, -v
+  migrate          Migrate configuration/metadata/layout from
+                        previous versions of git-svn
+                     --config-dir <arg>
+                     --ignore-paths <arg>
+                     --ignore-refs <arg>
+                     --include-paths <arg>
+                     --minimize
+                     --no-auth-cache
+                     --username <arg>
+  mkdirs           recreate empty directories after a checkout
+                     --revision, -r <num>
+  propget          Print the value of a property on a file or directory
+                     --revision, -r <num>
+  proplist         List all properties of a file or directory
+                     --revision, -r <num>
+  rebase           Fetch and rebase your working directory
+                     --add-author-from
+                     --authors-file, -A <arg>
+                     --authors-prog <arg>
+                     --config-dir <arg>
+                     --dry-run, -n
+                     --fetch-all, --all
+                     --follow-parent, --follow!
+                     --ignore-paths <arg>
+                     --ignore-refs <arg>
+                     --include-paths <arg>
+                     --localtime
+                     --local, -l
+                     --log-window-size <num>
+                     --merge, -m, -M
+                     --no-auth-cache
+                     --no-checkout
+                     --preserve-merges, -p
+                     --quiet, --q+
+                     --repack-flags, --repack-args, --repack-opts <arg>
+                     --repack <num>
+                     --strategy, -s <arg>
+                     --use-log-author
+                     --username <arg>
+                     --verbose, -v
+  reset            Undo fetches back to the specified SVN revision
+                     --parent, -p
+                     --revision, -r <arg>
+  set-tree         Set an SVN repository to a git tree-ish
+                     --add-author-from
+                     --authors-file, -A <arg>
+                     --authors-prog <arg>
+                     --config-dir <arg>
+                     --copy-similarity, -C <num>
+                     --edit, -e
+                     --find-copies-harder
+                     --follow-parent, --follow!
+                     --ignore-paths <arg>
+                     --ignore-refs <arg>
+                     --include-paths <arg>
+                     -l <num>
+                     --localtime
+                     --log-window-size <num>
+                     --no-auth-cache
+                     --no-checkout
+                     --quiet, --q+
+                     --repack-flags, --repack-args, --repack-opts <arg>
+                     --repack <num>
+                     --rmdir
+                     --stdin
+                     --use-log-author
+                     --username <arg>
+  show-externals   Show svn:externals listings
+                     --revision, -r <num>
+  show-ignore      Show svn:ignore listings
+                     --revision, -r <num>
+  tag              Create a tag in the SVN repository
+                     --commit-url <arg>
+                     --destination, -d <arg>
+                     --dry-run, -n
+                     --message, -m <arg>
+                     --parents
+                     --username <arg>
+
+GIT_SVN_ID may be set in the environment or via the --id/-i switch to an
+arbitrary identifier if you're tracking multiple SVN branches/repositories in
+one git repository and want to keep them separate.  See git-svn(1) for more
+information.
+C:\Users\jr286576\Temp\hfny.git [master]> git svn show-ignore
+config --get svn-remote.svn.fetch :refs/remotes/git-svn$: command returned error: 1
+
+C:\Users\jr286576\Temp\hfny.git [master]> git svn --help
+Launching default browser to display HTML ...
+C:\Users\jr286576\Temp\hfny.git [master]> gl
+
+Path
+----
+C:\Users\jr286576\Temp\hfny.git
+
+
+C:\Users\jr286576\Temp\hfny.git [master]> cd alias:
+> ls gl*
+
+CommandType     Name                                               ModuleName
+-----------     ----                                               ----------
+Alias           gl -> Get-Location
+Alias           glg -> git.exe log
+
+
+> c:
+C:\Users\jr286576\Temp\hfny.git [master]> cd alias:
+> ls g*
+
+CommandType     Name                                               ModuleName
+-----------     ----                                               ----------
+Alias           gal -> Get-Alias
+Alias           gbp -> Get-PSBreakpoint
+Alias           gc -> Get-Content
+Alias           gci -> Get-ChildItem
+Alias           gcm -> Get-Command
+Alias           gdr -> Get-PSDrive
+Alias           gcs -> Get-PSCallStack
+Alias           ghy -> Get-History
+Alias           gi -> Get-Item
+Alias           gl -> Get-Location
+Alias           gm -> Get-Member
+Alias           gmo -> Get-Module
+Alias           gp -> Get-ItemProperty
+Alias           gps -> Get-Process
+Alias           group -> Group-Object
+Alias           gsv -> Get-Service
+Alias           gsnp -> Get-PSSnapin
+Alias           gu -> Get-Unique
+Alias           gv -> Get-Variable
+Alias           gwmi -> Get-WmiObject
+Alias           gjb -> Get-Job
+Alias           gsn -> Get-PSSession
+Alias           gte -> Get-TabExpansion                            powertab
+Alias           g -> git.exe
+Alias           gs -> git.exe status
+Alias           glg -> git.exe log
+Alias           gco -> git.exe commit
+
+
+> c:
+C:\Users\jr286576\Temp\hfny.git [master]> gte
+
+Filter                                                             Text                                                               Type
+------                                                             ----                                                               ----
+|%                                                                 | foreach {$_}                                                     Alias
+|?                                                                 | where {$_}                                                       Alias
+date                                                               Get-Date -date                                                     Invoke
+h                                                                  Get-help $^ -Full                                                  Custom
+h                                                                  Get-help $^ -Detailed                                              Custom
+h                                                                  Get-help $^ -Examples                                              Custom
+now                                                                Get-Date                                                           Invoke
+time                                                               Get-Date -time                                                     Invoke
+tqb                                                                The quick brown fox jumps over the lazy dog                        Custom
+
+
+C:\Users\jr286576\Temp\hfny.git [master]> gal
+
+CommandType     Name                                               ModuleName
+-----------     ----                                               ----------
+Alias           % -> ForEach-Object
+Alias           .. -> GoUp
+Alias           ... -> GoUpUp
+Alias           ? -> Where-Object
+Alias           ?? -> Invoke-NullCoalescing                        posh-git
+Alias           ac -> Add-Content
+Alias           asnp -> Add-PSSnapin
+Alias           ate -> Add-TabExpansion                            powertab
+Alias           cat -> Get-Content
+Alias           cd -> cd2
+Alias           cd.. -> GoUp
+Alias           cdto -> Set-LocationTo
+Alias           chdir -> Set-Location
+Alias           clc -> Clear-Content
+Alias           clear -> Clear-Host
+Alias           clhy -> Clear-History
+Alias           cli -> Clear-Item
+Alias           clp -> Clear-ItemProperty
+Alias           cls -> Clear-Host
+Alias           clv -> Clear-Variable
+Alias           cnsn -> Connect-PSSession
+Alias           compare -> Compare-Object
+Alias           copy -> Copy-Item
+Alias           cp -> Copy-Item
+Alias           cpi -> Copy-Item
+Alias           cpp -> Copy-ItemProperty
+Alias           cvpa -> Convert-Path
+Alias           dbp -> Disable-PSBreakpoint
+Alias           del -> Remove-Item
+Alias           diff -> Compare-Object
+Alias           dir -> Get-ChildItem
+Alias           dnsn -> Disconnect-PSSession
+Alias           ebp -> Enable-PSBreakpoint
+Alias           echo -> Write-Output
+Alias           epal -> Export-Alias
+Alias           epcsv -> Export-Csv
+Alias           epsn -> Export-PSSession
+Alias           erase -> Remove-Item
+Alias           etsn -> Enter-PSSession
+Alias           exsn -> Exit-PSSession
+Alias           fc -> Format-Custom
+Alias           fl -> Format-List
+Alias           foreach -> ForEach-Object
+Alias           ft -> Format-Table
+Alias           fw -> Format-Wide
+Alias           g -> git.exe
+Alias           gal -> Get-Alias
+Alias           gbp -> Get-PSBreakpoint
+Alias           gc -> Get-Content
+Alias           gci -> Get-ChildItem
+Alias           gcm -> Get-Command
+Alias           gco -> git.exe commit
+Alias           gcs -> Get-PSCallStack
+Alias           gdr -> Get-PSDrive
+Alias           ghy -> Get-History
+Alias           gi -> Get-Item
+Alias           gjb -> Get-Job
+Alias           gl -> Get-Location
+Alias           glg -> git.exe log
+Alias           gm -> Get-Member
+Alias           gmo -> Get-Module
+Alias           gp -> Get-ItemProperty
+Alias           gps -> Get-Process
+Alias           group -> Group-Object
+Alias           gs -> git.exe status
+Alias           gsn -> Get-PSSession
+Alias           gsnp -> Get-PSSnapin
+Alias           gsv -> Get-Service
+Alias           gte -> Get-TabExpansion                            powertab
+Alias           gu -> Get-Unique
+Alias           gv -> Get-Variable
+Alias           gwmi -> Get-WmiObject
+Alias           h -> Get-History
+Alias           history -> Get-History
+Alias           home -> GoHome
+Alias           icm -> Invoke-Command
+Alias           iex -> Invoke-Expression
+Alias           ihy -> Invoke-History
+Alias           ii -> Invoke-Item
+Alias           inmo -> Install-Module                             PsGet
+Alias           ipal -> Import-Alias
+Alias           ipcsv -> Import-Csv
+Alias           ipmo -> Import-Module
+Alias           ipsn -> Import-PSSession
+Alias           irm -> Invoke-RestMethod
+Alias           ise -> powershell_ise.exe
+Alias           ismo -> Install-Module                             PsGet
+Alias           itee -> Invoke-TabExpansionEditor                  powertab
+Alias           iwmi -> Invoke-WmiMethod
+Alias           iwr -> Invoke-WebRequest
+Alias           kill -> Stop-Process
+Alias           lp -> Out-Printer
+Alias           ls -> Get-ChildItem
+Alias           man -> help
+Alias           md -> mkdir
+Alias           measure -> Measure-Object
+Alias           mi -> Move-Item
+Alias           mount -> New-PSDrive
+Alias           move -> Move-Item
+Alias           mp -> Move-ItemProperty
+Alias           mv -> Move-Item
+Alias           nal -> New-Alias
+Alias           ndr -> New-PSDrive
+Alias           ni -> New-Item
+Alias           nmo -> New-Module
+Alias           npssc -> New-PSSessionConfigurationFile
+Alias           nsn -> New-PSSession
+Alias           nv -> New-Variable
+Alias           ogv -> Out-GridView
+Alias           oh -> Out-Host
+Alias           popd -> Pop-Location
+Alias           pp -> DTW.PS.PrettyPrinterV1
+Alias           ps -> Get-Process
+Alias           pushd -> Push-Location
+Alias           pwd -> Get-Location
+Alias           r -> Invoke-History
+Alias           rbp -> Remove-PSBreakpoint
+Alias           rcjb -> Receive-Job
+Alias           rcsn -> Receive-PSSession
+Alias           rd -> Remove-Item
+Alias           rdr -> Remove-PSDrive
+Alias           ren -> Rename-Item
+Alias           rgte -> Register-TabExpansion                      powertab
+Alias           ri -> Remove-Item
+Alias           rjb -> Remove-Job
+Alias           rm -> Remove-Item
+Alias           rmdir -> Remove-Item
+Alias           rmo -> Remove-Module
+Alias           rni -> Rename-Item
+Alias           rnp -> Rename-ItemProperty
+Alias           rp -> Remove-ItemProperty
+Alias           rsn -> Remove-PSSession
+Alias           rsnp -> Remove-PSSnapin
+Alias           rte -> Remove-TabExpansion                         powertab
+Alias           rujb -> Resume-Job
+Alias           rv -> Remove-Variable
+Alias           rvpa -> Resolve-Path
+Alias           rwmi -> Remove-WmiObject
+Alias           sajb -> Start-Job
+Alias           sal -> Set-Alias
+Alias           saps -> Start-Process
+Alias           sasv -> Start-Service
+Alias           sbp -> Set-PSBreakpoint
+Alias           sc -> Set-Content
+Alias           select -> Select-Object
+Alias           set -> Set-Variable
+Alias           shcm -> Show-Command
+Alias           si -> Set-Item
+Alias           sl -> Set-Location
+Alias           sleep -> Start-Sleep
+Alias           sls -> Select-String
+Alias           sort -> Sort-Object
+Alias           sp -> Set-ItemProperty
+Alias           spjb -> Stop-Job
+Alias           spps -> Stop-Process
+Alias           spsv -> Stop-Service
+Alias           start -> Start-Process
+Alias           subl -> sublime_text.exe
+Alias           sujb -> Suspend-Job
+Alias           sv -> Set-Variable
+Alias           swmi -> Set-WmiInstance
+Alias           tee -> Tee-Object
+Alias           touch -> Set-EmptyFile
+Alias           trcm -> Trace-Command
+Alias           type -> Get-Content
+Alias           udte -> Update-TabExpansionDataBase                powertab
+Alias           upmo -> Update-Module                              PsGet
+Alias           where -> Where-Object
+Alias           wjb -> Wait-Job
+Alias           write -> Write-Output
+
+
+C:\Users\jr286576\Temp\hfny.git [master]> git grep fetch
+HFNY/Scripts/jquery-1.7.2-vsdoc.js:                // Try to fetch any internally stored data first
+HFNY/Scripts/jquery-1.8.2-vsdoc.js:                // Try to fetch any internally stored data first
+HFNY/Scripts/jquery-1.8.2.js:                           // Try to fetch any internally stored data first
+HFNY/Scripts/jquery-1.8.2.js:   // If nothing was found internally, try to fetch any
+HFNY/Scripts/jquery.dataTables.js:                              var fetchData = function (data, type, src) {
+HFNY/Scripts/jquery.dataTables.js:                                                                      out.push( fetchData( data[j], type, inHFNY/Scripts/jquery.dataTables.js:
+                                      // The inner call to fetchData has already traHFNY/Scripts/jquery.dataTables.js:                                      return fetchData( data, type, mSource );
+C:\Users\jr286576\Temp\hfny.git [master]> git grep jay
+C:\Users\jr286576\Temp\hfny.git [master]> git grep jroHFNY/Pages/FatherFigure.aspx.vb:                ' changed 05-08-13 jrobohn - do the below for edits, too
+HFNY/Pages/FatherFigure.aspx.vb:        '' changed 05-08-13 jrobohn - do the below for edits, too
+C:\Users\jr286576\Temp\hfny.git [master]> git grep robohn
+HFNY/Pages/FatherFigure.aspx.vb:                ' changed 05-08-13 jrobohn - do the below for edits, too
+HFNY/Pages/FatherFigure.aspx.vb:        '' changed 05-08-13 jrobohn - do the below for edits, too
+C:\Users\jr286576\Temp\hfny.git [master]> git grep khalsa
+HFNY/Modules/SendEmail.vb:                      mailMessage.[CC].Add("dkhalsa@albany.edu")
+HFNY/Pages/FollowUp.aspx:            //Are you supervisor, if yes show 'Submit and Approve' button too  ... khalsa
+HFNY/Pages/FollowUp.aspx:        //Leave code for the fix here ... khalsa
+HFNY/Pages/HFNYAbout.aspx:                                              <a target="_blank" href="http://www.albany.edu/chsr/dkhalsa.shtml"><imHFNY/Pages/HVScreen.aspx:            //Are you supervisor,
+ if yes show 'Submit and Approve' button too  ... khalsa
+HFNY/Pages/HomeVisitLog.aspx:                   //Are you supervisor, if yes show 'Submit and Approve' button too  ... khalsa
+HFNY/Pages/IdContactInformation.aspx:            //Are you supervisor, if yes show 'Submit and Approve' button too  ... khalsa
+HFNY/Pages/IdContactInformation.aspx:                    //Now enable the tab ... khalsa
+HFNY/Pages/IdContactInformation.aspx:                    //Now enable the tab ... khalsa
+HFNY/Pages/IdContactInformation.aspx:                    //Now enable the tab ... khalsa
+HFNY/Pages/IdContactInformation.aspx:                    //Now enable the tab ... khalsa
+HFNY/Pages/IdContactInformation.aspx:                    //Now enable the tab ... khalsa
+HFNY/Pages/IdContactInformation.aspx:                    //Now enable the tab ... khalsa
+HFNY/Pages/IdContactInformation.aspx:                    //Now enable the tab ... khalsa
+HFNY/Pages/IdContactInformation.aspx:                    //Now enable the tab ... khalsa
+HFNY/Pages/IdContactInformation.aspx.vb:            'now OBPInHome comes from CommonAttributes  ... khalsa
+HFNY/Pages/Intake.aspx:            //Are you supervisor, if yes show 'Submit and Approve' button too  ... khalsa
+HFNY/Pages/Intake.aspx.vb:        ' We are fill it  again with the  current user selected choices  ... khalsa
+HFNY/Pages/Kempe.aspx:            //Are you supervisor, if yes show 'Submit and Approve' button too  ... khalsa
+HFNY/Pages/Kempe.aspx:      // 53a and 53b are NO MORE mutually exclusive. John changed his mind now ..... khalsa 11/29/2012
+HFNY/Pages/Kempe.aspx.vb:                       'Question - why not be editable, the next four? ... khalsa
+HFNY/Pages/PCProfile.aspx:            // *** Onchange in first/middle/last name, show radio buttons for typo/name change  ... khalsa  *** //
+HFNY/Pages/PCProfile.aspx.vb:                bPC1orOBPNameChange = True 'You can use this var to enforce if namechange is a required field ...HFNY/Pages/PCProfile.aspx.vb:            strUrl = String.F
+ormat("MiechvIdentification.aspx?pcpk={0}", currentpcpk) 'remove or add new logic toHFNY/Pages/Supervisions.aspx.vb:        'Get primary key for the row being deleted (value of the CommandArgument of
+the button) ... khalsa
+HFNY/Pages/TCID.aspx:            //Are you supervisor, if yes show 'Submit and Approve' button too  ... khalsa
+HFNY/Pages/WorkerAssignment.aspx.vb:        'changed myuser.Program to caseprgminfo.ProgramFK -- will work now if you login as admin (thereforHFNY/Reports/XtraReports/Ticklers/rptFSWEnrolledCaseTickle
+C:\Users\jr286576\Temp\hfny.git [master]>

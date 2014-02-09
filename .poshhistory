@@ -1,0 +1,12 @@
+#TYPE Microsoft.PowerShell.Commands.HistoryInfo
+"Id","CommandLine","ExecutionStatus","StartExecutionTime","EndExecutionTime"
+"1","set-prompt.ps1","Completed","3/10/2013 11:09:31 PM","3/10/2013 11:09:31 PM"
+"2",".\Set-Prompt.ps1","Completed","3/10/2013 11:09:49 PM","3/10/2013 11:09:49 PM"
+"3","gc .\Set-Prompt.ps1 | less","Completed","3/10/2013 11:10:20 PM","3/10/2013 11:10:40 PM"
+"4","pwd","Completed","3/11/2013 12:13:25 AM","3/11/2013 12:13:25 AM"
+"5",".\Get-FileCount.ps1","Completed","3/11/2013 12:13:31 AM","3/11/2013 12:14:37 AM"
+"6",".\Get-FileCount.ps1","Completed","3/11/2013 12:16:04 AM","3/11/2013 12:16:05 AM"
+"7",".\Get-FileCount.ps1","Completed","3/11/2013 12:17:26 AM","3/11/2013 12:17:26 AM"
+"8",".\Get-FileCount.ps1","Completed","3/11/2013 12:18:20 AM","3/11/2013 12:18:20 AM"
+"9","h","Completed","3/11/2013 12:22:41 AM","3/11/2013 12:22:41 AM"
+"10","help about_signing","Completed","3/11/2013 12:35:09 AM","3/11/2013 6:57:50 AM"

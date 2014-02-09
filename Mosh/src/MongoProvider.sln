@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeOwls.MongoProvider", "MongoProvider\CodeOwls.MongoProvider.csproj", "{24968902-9D1B-4DC7-88C6-65AE56549D6C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Module", "Module", "{E406107D-088C-4962-A8A3-A0D799184309}"
+	ProjectSection(SolutionItems) = preProject
+		Module\Mongo\en-US\about_Mongo.help.txt = Module\Mongo\en-US\about_Mongo.help.txt
+		Module\Mongo\en-US\about_Mongo_Version.help.txt = Module\Mongo\en-US\about_Mongo_Version.help.txt
+		Module\Mongo\en-US\CodeOwls.MongoProvider.dll-help.xml = Module\Mongo\en-US\CodeOwls.MongoProvider.dll-help.xml
+		Module\Mongo\Mongo.Formats.ps1xml = Module\Mongo\Mongo.Formats.ps1xml
+		Module\Mongo\Mongo.psd1 = Module\Mongo\Mongo.psd1
+		Module\Mongo\Mongo.Types.ps1xml = Module\Mongo\Mongo.Types.ps1xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{01FA9CE8-CA74-41AF-8D4B-AFDDF128C68E}"
+	ProjectSection(SolutionItems) = preProject
+		..\default.ps1 = ..\default.ps1
+		MongoProvider.psm1 = MongoProvider.psm1
+		..\tests\tests.ps1 = ..\tests\tests.ps1
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{24968902-9D1B-4DC7-88C6-65AE56549D6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24968902-9D1B-4DC7-88C6-65AE56549D6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24968902-9D1B-4DC7-88C6-65AE56549D6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24968902-9D1B-4DC7-88C6-65AE56549D6C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

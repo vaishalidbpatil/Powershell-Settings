@@ -1,0 +1,79 @@
+﻿<html><title>README</title><body>
+<h1>Mdbc module - MongoDB Cmdlets for PowerShell</h1>
+<p><img src="https://github.com/downloads/nightroman/Mdbc/PoweredMongoDBblue50.png" alt="Powered by MongoDB" /></p>
+<p><em>Mdbc</em> is the <em>Windows PowerShell</em> module based on the official
+<a href="https://github.com/mongodb/mongo-csharp-driver">MongoDB C# driver</a>.
+It makes MongoDB scripting easy and represents yet another MongoDB shell.</p>
+<h2>Quick Start</h2>
+<p><strong>Step 1:</strong> Get and install <em>Mdbc</em>:</p>
+<p>An easy way to get and install is the PowerShell tool
+<a href="https://github.com/psget/psget">PsGet</a>:</p>
+<pre><code>Import-Module PsGet
+Install-Module -NuGetPackageId Mdbc
+</code></pre>
+
+<p>Alternatively, to get the package without installation use
+<a href="http://nuget.codeplex.com/releases">NuGet.exe Command Line</a>:</p>
+<pre><code>NuGet install Mdbc
+</code></pre>
+
+<p>In the latter case copy the directory <em>tools\Mdbc</em> from the package to a
+PowerShell module directory, see <code>$env:PSModulePath</code>. For example:</p>
+<pre><code>C:/Users/.../Documents/WindowsPowerShell/Modules/Mdbc
+</code></pre>
+
+<p><strong>Step 2:</strong> In a PowerShell command prompt import the module:</p>
+<pre><code>Import-Module Mdbc
+</code></pre>
+
+<p><strong>Step 3:</strong> Take a look at help:</p>
+<pre><code>help about_Mdbc
+help Connect-Mdbc -full
+...
+</code></pre>
+
+<p><strong>Step 4:</strong> Invoke these operations line by line, reading the comments
+(make sure that mongod is started, otherwise <code>Connect-Mdbc</code> fails):</p>
+<pre><code># Load the module
+Import-Module Mdbc
+
+# Connect the database 'test' and the new collection 'test'
+Connect-Mdbc . test test -NewCollection
+
+# Add some data (Name and WorkingSet of currently running processes)
+Get-Process | New-MdbcData -Id {$_.Id} -Property Name, WorkingSet | Add-MdbcData
+
+# Query all saved data back and print them formatted
+Get-MdbcData -AsCustomObject | Format-Table -AutoSize | Out-String
+
+# Get saved data of the process 'mongod' (there should be at least one)
+$data = Get-MdbcData (New-MdbcQuery Name -EQ mongod)
+$data
+
+# Update these data (let's just set the WorkingSet to 12345)
+$data | Update-MdbcData (New-MdbcUpdate WorkingSet -Set 12345)
+
+# Query again in order to take a look at the changed data
+Get-MdbcData (New-MdbcQuery Name -EQ mongod)
+
+# Remove these data
+$data | Remove-MdbcData
+
+# Query again, just get the count, 0 is expected
+Get-MdbcData (New-MdbcQuery Name -EQ mongod) -Count
+</code></pre>
+
+<p>This is it. If the code above works then the module is installed and ready to use.</p>
+<h2>Next Steps</h2>
+<p>Read cmdlet help topics and take a look at their examples, they show some basic
+use cases to start with.</p>
+<p>Take a look at the scripts in the <em>Scripts</em> directory, the interactive profile
+<em>Mdbc.ps1</em> in the first place. Other scripts are rather toys but may be useful.</p>
+<p>Even more examples can be found in the <em>Tests</em> directory. Download the sources.
+These tests cover all the cmdlets and most of other helper features.</p>
+<p><em>Mdbc</em> cmdlets are designed for rather trivial routine operations. For advanced
+operations the C# driver API should be used. This is easy but one has to know
+how. The C# driver claims to be PowerShell friendly, some API was specifically
+designed with PowerShell in mind. Read the C# driver manuals.</p>
+
+</body></html>
