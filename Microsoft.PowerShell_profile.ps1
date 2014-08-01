@@ -152,7 +152,7 @@ function GoUpUp($path) {
     Set-Location -path "..\..\$path"
 }
 function GoHome($path) {
-    Set-Location -path "$home\$path"
+    Set-Location -path "$env:HOME\$path"
 }
 
 function Get-DirSize
@@ -199,6 +199,21 @@ function Get-DirWithSize
   Get-Childitem $dir
   Get-DirSize $dir
 }
+
+# git related functions and aliases
+function get-gitbranch { git branch }
+function get-gitbranchall { git branch -a }
+function get-gitconfiglist { git config -l }
+function get-gitlog { git log }
+function get-gitlogpretty { git lg-pretty }
+function get-gitlogplaintext { git lg-plaintext }
+function get-gitlogalt { git lg-alt }
+function get-gitstash { git stash -l }
+function get-gitstatus2 { git status }
+function get-gitsvnfetch { git svn fetch }
+function get-gitsvnrebase { git svn rebase }
+function get-gitsvndcommit { git svn dcommit }
+
 ####################################
 # end of functions
 ####################################
@@ -206,17 +221,23 @@ function Get-DirWithSize
 ####################################
 
 ## Set the profile directory first, so we can refer to it from now on.
-Set-Variable ProfileDir = (Split-Path -Parent $MyInvocation.MyCommand.Path) -Option AllScope
+# Set-Variable ProfileDir = (Split-Path -Parent $MyInvocation.MyCommand.Path) -Option AllScope
+Set-Variable ProfileDir (Split-Path -Parent $MyInvocation.MyCommand.Path) -Option AllScope
 ## Set the script directory
-Set-Variable scriptDir = (Split-Path -Parent $MyInvocation.MyCommand.Path) -Option AllScope
+Set-Variable scriptDir (Split-Path -Parent $MyInvocation.MyCommand.Path) -Option AllScope
 
-$env:cdpath = "C:\users\jr286576\Downloads\_Categories\;c:\dev;C:\users\jr286576\Downloads"
-$env:path += ";$(Split-Path $profile);C:\users\jr286576\Downloads\_Categories\PowerShell" 
-$env:Path += ";$(Split-Path $profile)\Scripts"
+$env:cdpath = "$env:HOME\Downloads\_Categories\;c:\dev;$env:HOME\Downloads"
+$env:Path += ";$(Split-Path $PROFILE);$env:HOME\Downloads\_Categories\PowerShell" 
+## I add my "Scripts" directory and all of its direct subfolders to my PATH
+$env:Path += ";$(Split-Path $PROFILE)\Scripts"
+#$env:Path = Get-ChildItem $ProfileDir\Script[s],$ProfileDir\Scripts\* | 
+#               Where-Object { $_.PsIsContainer } | 
+#               ForEach-Object { $_.FullName } | 
+#               Join ";" -append $ENV:PATH -unique
 
 # dot source the directory jumper and file dir/ls colorizer
-. c:\Users\jr286576\Documents\WindowsPowerShell\posz.ps1
-. c:\Users\jr286576\Documents\WindowsPowerShell\git-dir.ps1
+. "$env:HOME\Documents\WindowsPowerShell\posz.ps1"
+. "$env:HOME\Documents\WindowsPowerShell\git-dir.ps1"
 
 # set the aliases that we like
 Set-Alias -Name cdto -Value Set-LocationTo
@@ -231,33 +252,19 @@ Set-Alias -Name "..." -Value GoUpUp
 Set-Alias -Name home -Value GoHome
 Set-Alias -Name pp -Value DTW.PS.PrettyPrinterV1 
 
-#git related functions and aliases
-function get-gitbranch { git branch }
-function get-gitbranchall { git branch -a }
-function get-gitconfiglist { git config -l }
-function get-gitlog { git log }
-function get-gitlogpretty { git lg-pretty }
-function get-gitlogplaintext { git lg-plaintext }
-function get-gitlogalt { git lg-alt }
-function get-gitstash { git stash -l }
-function get-gitstatus2 { git status }
-function get-gitsvnfetch { git svn fetch }
-function get-gitsvnrebase { git svn rebase }
-function get-gitsvndcommit { git svn dcommit }
-
-set-Alias -Name g -Value Git.exe
-set-Alias -Name gb -Value get-gitbranch
-set-Alias -Name gba -Value get-gitbranchall
-set-Alias -Name gcl -Value get-gitconfiglist 
-set-Alias -Name glg -Value get-gitlog
-set-Alias -Name glgp -Value get-gitlogpretty
-set-Alias -Name glgt -Value get-gitlogplaintext
-set-Alias -Name glga -Value get-gitlogalt
-set-Alias -Name gs -Value get-gitstatus2
-set-Alias -Name gst -Value get-gitstash
-set-Alias -Name gsvnf -Value get-gitsvnfetch
-set-Alias -Name gsvnr -Value get-gitsvnrebase
-set-Alias -Name gsvnc -Value get-gitsvndcommit
+Set-Alias -Name g -Value Git.exe
+Set-Alias -Name gb -Value get-gitbranch
+Set-Alias -Name gba -Value get-gitbranchall
+Set-Alias -Name gcl -Value get-gitconfiglist 
+Set-Alias -Name glg -Value get-gitlog
+Set-Alias -Name glgp -Value get-gitlogpretty
+Set-Alias -Name glgt -Value get-gitlogplaintext
+Set-Alias -Name glga -Value get-gitlogalt
+Set-Alias -Name gs -Value get-gitstatus2
+Set-Alias -Name gst -Value get-gitstash
+Set-Alias -Name gsvnf -Value get-gitsvnfetch
+Set-Alias -Name gsvnr -Value get-gitsvnrebase
+Set-Alias -Name gsvnc -Value get-gitsvndcommit
 
 ## I determine which modules to pre-load here (in this SIGNED script)
 $AutoModules = 'PsGet', 'PoshCode', 'PSCX', `
