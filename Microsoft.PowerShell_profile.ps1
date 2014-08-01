@@ -268,7 +268,7 @@ Set-Alias -Name gsvnc -Value get-gitsvndcommit
 
 ## I determine which modules to pre-load here (in this SIGNED script)
 $AutoModules = 'PsGet', 'PoshCode', 'PSCX', `
-				'C:\Users\jr286576\Documents\WindowsPowerShell\Modules\DTW.PS.PrettyPrinterV1.psd1'
+				'$env:HOME\Documents\WindowsPowerShell\Modules\DTW.PS.PrettyPrinterV1.psd1'
 ## 'Autoload', 'Authenticode', 'HttpRest', 'Strings', 'ResolveAliases', 'PowerTab', 'sqlps', 
 ###################################################################################################
 ## Preload all the modules in AutoModules, printing out their names in color based on status
@@ -301,7 +301,7 @@ Import-Module DTW.PS.PrettyPrinterV1.psm1
 #>
 
 # Load posh-git example profile
-. 'C:\Users\jr286576\Documents\Github\posh-git\profile.example.ps1'
+. '$env:HOME\Documents\Github\posh-git\profile.example.ps1'
 
 # dot source the new-command-wrapper
 #. 'C:\Users\jr286576\Documents\WindowsPowerShell\Scripts\New-CommandWrapper.ps1'
@@ -316,7 +316,7 @@ set-Alias -Name gls -Value Write-Color-LS
 
 # start a transcript session
 $TempDate = Get-Date
-$TranscriptFile = "C:\Users\JR286576\Documents\WindowsPowershell\Transcripts\PoshTranscript" `
+$TranscriptFile = "$env:HOME\Documents\WindowsPowershell\Transcripts\PoshTranscript" `
                   + $TempDate.Year + $TempDate.Month.ToString("00") + $TempDate.Day.ToString("00")
 if (Test-Path ($TranscriptFile+".txt")) {
   $ctr = 0
