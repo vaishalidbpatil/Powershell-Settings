@@ -1,0 +1,3 @@
+# Define commonly used custom aliases...
+
+new-alias edit notepad.exe
