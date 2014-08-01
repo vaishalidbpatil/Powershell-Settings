@@ -1,5 +1,4 @@
 function prompt {
-    # this prompt function chops off the path to fit within 20 characters
     # $loc = Resize-Path (Get-Location)
     $loc = (Get-Location)
     $tail = ""
@@ -8,7 +7,7 @@ function prompt {
     } else {
       $tail = Split-Path -leaf -path $loc
       $currpath = $loc.ToString().substring(0,$loc.ToString().IndexOf("\",3)+1) + "...\" + $tail
-	}
+    }
 
 		$head = $env:COMPUTERNAME + "@" + $env:USERNAME + ": " + $currpath
 
@@ -86,17 +85,9 @@ function prompt
 #>
 
 function Set-EmptyFile {
-    param(  [parameter(Mandatory = $true)]            
-         [ValidateNotNullOrEmpty()]            
-            [string] $targetFile)
-            
     <# Set-Content -Path ($args[0]) -Value ($null) #>
-	if (Test-Path ($targetFile)) {
-		Set-Timestamp $targetFile
-	} else {
-		New-Item -ItemType file $targetFile
-	} 
-}
+    New-Item -ItemType file example.txt
+} 
 
 function Set-Timestamp {
     <# To update the timestamp of a file: #>
@@ -148,6 +139,7 @@ function Set-LocationTo {
 function GoUp($path) {
     Set-Location -path "..\$path"
 }
+
 function GoUpUp($path) {
     Set-Location -path "..\..\$path"
 }
@@ -155,68 +147,11 @@ function GoHome($path) {
     Set-Location -path "$home\$path"
 }
 
-function Get-DirSize
-{
-  param ($dir)
-  $bytes = 0
-  $count = 0
-
-  Get-Childitem $dir | Foreach-Object {
-    if ($_ -is [System.IO.FileInfo])
-    {
-      $bytes += $_.Length
-      $count++
-    }
-  }
-
-  Write-Host "`n    " -NoNewline
-
-  if ($bytes -ge 1KB -and $bytes -lt 1MB)
-  {
-    Write-Host ("" + [Math]::Round(($bytes / 1KB), 2) + " KB") -ForegroundColor "White" -NoNewLine
-  }
-  elseif ($bytes -ge 1MB -and $bytes -lt 1GB)
-  {
-    Write-Host ("" + [Math]::Round(($bytes / 1MB), 2) + " MB") -ForegroundColor "White" -NoNewLine
-  }
-  elseif ($bytes -ge 1GB)
-  {
-    Write-Host ("" + [Math]::Round(($bytes / 1GB), 2) + " GB") -ForegroundColor "White" -NoNewLine
-  }
-  else
-  {
-    Write-Host ("" + $bytes + " bytes") -ForegroundColor "White" -NoNewLine
-  }
-  Write-Host " in " -NoNewline
-  Write-Host $count -ForegroundColor "White" -NoNewline
-  Write-Host " files"
-
-}
-
-function Get-DirWithSize
-{
-  param ($dir)
-  Get-Childitem $dir
-  Get-DirSize $dir
-}
-####################################
-# end of functions
-####################################
-# start of initialization code
-####################################
-
-## Set the profile directory first, so we can refer to it from now on.
-Set-Variable ProfileDir = (Split-Path -Parent $MyInvocation.MyCommand.Path) -Option AllScope
-## Set the script directory
-Set-Variable scriptDir = (Split-Path -Parent $MyInvocation.MyCommand.Path) -Option AllScope
-
 $env:cdpath = "C:\users\jr286576\Downloads\_Categories\;c:\dev;C:\users\jr286576\Downloads"
-$env:path += ";$(Split-Path $profile);C:\users\jr286576\Downloads\_Categories\PowerShell" 
-$env:Path += ";$(Split-Path $profile)\Scripts"
+$env:path += ";C:\users\jr286576\Documents\WindowsPowerShell;C:\users\jr286576\Downloads\_Categories\PowerShell" 
 
-# dot source the directory jumper and file dir/ls colorizer
+# dot source the directory jumper
 . c:\Users\jr286576\Documents\WindowsPowerShell\posz.ps1
-. c:\Users\jr286576\Documents\WindowsPowerShell\git-dir.ps1
 
 # set the aliases that we like
 Set-Alias -Name cdto -Value Set-LocationTo
@@ -259,65 +194,28 @@ set-Alias -Name gsvnf -Value get-gitsvnfetch
 set-Alias -Name gsvnr -Value get-gitsvnrebase
 set-Alias -Name gsvnc -Value get-gitsvndcommit
 
-## I determine which modules to pre-load here (in this SIGNED script)
-$AutoModules = 'PsGet', 'PoshCode', 'PSCX', `
-				'C:\Users\jr286576\Documents\WindowsPowerShell\Modules\DTW.PS.PrettyPrinterV1.psd1'
-## 'Autoload', 'Authenticode', 'HttpRest', 'Strings', 'ResolveAliases', 'PowerTab', 'sqlps', 
-###################################################################################################
-## Preload all the modules in AutoModules, printing out their names in color based on status
-## No errors while loading modules (I will save them and print them out later)
-$ErrorActionPreference = "SilentlyContinue"
-Write-Host "Loading Modules: " -Fore Cyan -NoNewLine
-$AutoRunErrors = @()
-ForEach( $module in $AutoModules ) {
-   Import-Module $module -EA SilentlyContinue -EV +script:AutoRunErrors
-   if($?) {  
-      Write-Host "$module " -fore Cyan -NoNewLine  
-   } else {
-      Write-Host "$module " -fore Red -NoNewLine
-   }
-}
-###################################################################################################
+$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 
-Write-Host
-$ErrorActionPreference = "Continue"
-# Write out the error messages if we missed loading any modules
-if($AutoRunErrors) { $AutoRunErrors | Out-String | Write-Host -Fore Red }
-
-<#
 Import-Module PsGet
-Import-Module pssql
 # Import-Module PSCX
 Import-Module "C:\Users\jr286576\Documents\WindowsPowerShell\Modules\DTW.PS.PrettyPrinterV1.psd1"
-Import-Module DTW.PS.FileSystem.Encoding.psm1
-Import-Module DTW.PS.PrettyPrinterV1.psm1
-#>
+<#Import-Module DTW.PS.FileSystem.Encoding.psm1
+Import-Module DTW.PS.PrettyPrinterV1.psm1#>
 
 # Load posh-git example profile
 . 'C:\Users\jr286576\Documents\Github\posh-git\profile.example.ps1'
 
-# dot source the new-command-wrapper
-#. 'C:\Users\jr286576\Documents\WindowsPowerShell\Scripts\New-CommandWrapper.ps1'
-
-Remove-Item alias:dir
-Remove-Item alias:ls
-Set-Alias dir Get-DirWithSize
-Set-Alias ls Get-DirWithSize
-
-#
-set-Alias -Name gls -Value Write-Color-LS
-
 # start a transcript session
-$TempDate = Get-Date
-$TranscriptFile = "C:\Users\JR286576\Documents\WindowsPowershell\Transcripts\PoshTranscript" `
-                  + $TempDate.Year + $TempDate.Month.ToString("00") + $TempDate.Day.ToString("00")
-if (Test-Path ($TranscriptFile+".txt")) {
-  $ctr = 0
-  do { $ctr ++ } while ( Test-Path ($TranscriptFile+"-"+$ctr.ToString("00")+".txt") )
-  # $ctr++
-  $TranscriptFile += "-"+$ctr.ToString("00")+".txt" 
-} else {
-  $TranscriptFile += ".txt" 
-}
-"Transcript will be started in: $TranscriptFile"
-Start-Transcript $TranscriptFile | Out-Null
+# $TempDate = Get-Date
+# $TranscriptFile = "C:\Users\JR286576\Documents\WindowsPowershell\Transcripts\PoshTranscript" `
+#                   + $TempDate.Year + $TempDate.Month.ToString("00") + $TempDate.Day.ToString("00")
+# if (Test-Path ($TranscriptFile+".txt")) {
+#   $ctr = 0
+#   do { $ctr ++ } while ( Test-Path ($TranscriptFile+"-"+$ctr.ToString("00")+".txt") )
+#   # $ctr++
+#   $TranscriptFile += "-"+$ctr.ToString("00")+".txt" 
+# } else {
+#   $TranscriptFile += ".txt" 
+# }
+# "Transcript will be started in: $TranscriptFile"
+# Start-Transcript $TranscriptFile | Out-Null
