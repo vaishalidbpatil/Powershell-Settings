@@ -224,7 +224,7 @@ function get-gitsvndcommit { git svn dcommit }
 # Set-Variable ProfileDir = (Split-Path -Parent $MyInvocation.MyCommand.Path) -Option AllScope
 Set-Variable ProfileDir (Split-Path -Parent $MyInvocation.MyCommand.Path) -Option AllScope
 ## Set the script directory
-Set-Variable scriptDir (Split-Path -Parent $MyInvocation.MyCommand.Path) -Option AllScope
+Set-Variable ScriptDir (Split-Path -Parent $MyInvocation.MyCommand.Path) -Option AllScope
 
 $env:cdpath = "$env:HOME\Downloads\_Categories\;c:\dev;$env:HOME\Downloads"
 $env:Path += ";$(Split-Path $PROFILE);$env:HOME\Downloads\_Categories\PowerShell" 
@@ -250,7 +250,7 @@ Set-Alias -Name ".." -Value GoUp
 Set-Alias -Name "cd.." -Value GoUp
 Set-Alias -Name "..." -Value GoUpUp
 Set-Alias -Name home -Value GoHome
-Set-Alias -Name pp -Value DTW.PS.PrettyPrinterV1 
+Set-Alias -Name pp -Value Edit-DTWCleanScript
 
 Set-Alias -Name g -Value Git.exe
 Set-Alias -Name gb -Value get-gitbranch
@@ -267,8 +267,7 @@ Set-Alias -Name gsvnr -Value get-gitsvnrebase
 Set-Alias -Name gsvnc -Value get-gitsvndcommit
 
 ## I determine which modules to pre-load here (in this SIGNED script)
-$AutoModules = 'PsGet', 'PoshCode', 'PSCX', `
-				'$env:HOME\Documents\WindowsPowerShell\Modules\DTW.PS.PrettyPrinterV1.psd1'
+$AutoModules = 'PsGet', 'PoshCode', 'PSCX', 'DTW.PS.PrettyPrinterV1.psd1'
 ## 'Autoload', 'Authenticode', 'HttpRest', 'Strings', 'ResolveAliases', 'PowerTab', 'sqlps', 
 ###################################################################################################
 ## Preload all the modules in AutoModules, printing out their names in color based on status

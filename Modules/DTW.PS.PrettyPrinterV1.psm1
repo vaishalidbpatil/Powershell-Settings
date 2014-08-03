@@ -133,7 +133,7 @@ function Initialize-ProcessVariables {
 
     #region Initialize process variables
     # indent text; use two spaces by default, change to `t for tabs
-    [string]$script:IndentText = "  "
+    [string]$script:IndentText = "`t"
 
     # initialize file path information
     # source file to process
