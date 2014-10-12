@@ -1,0 +1,86 @@
+#----------------------------------------------------------------
+# Get-Tail.ps1
+# From: devcentral.f5.com/.../...to-powershell---tail.aspx
+#----------------------------------------------------------------
+param
+(
+  [string]$file = $(throw "Please specify the name of a file or Filter for Get-ChildItem [-file]"),
+  [int]$lines = -1,
+  [int]$bytes = -1,
+  [switch]$follow,
+  [int]$sleep = 1,
+  [switch]$quiet
+);
+
+function Get-Tail ()
+{
+  param
+  (
+    [string]$filespec,
+    [int]$lines = -1,
+    [int]$bytes = -1,
+    [switch]$follow,
+    [int]$sleep = 1,
+    [switch]$quiet
+  );
+
+  # if no bytes or lines specified, default to 10 lines
+  if (($bytes -eq -1) -and ($lines -eq -1)) { $lines = 10; }
+
+  $files = @( Get-ChildItem $filespec);
+  foreach ($file in $files)
+  {
+    # Optionally output file names when multiple files given
+    if (($files.Length -gt 1) -and !$quiet) { Write-Host "`n==> $($file.Name) <=="; }
+
+    if ($lines -ne -1)
+    {
+      $prev_len = 0;
+      while ($true)
+      {
+        # For line number option, get content as an array of lines
+        # and print out the last "n" of them.
+        $totalLines = Get-Content $file;
+
+        if ($prev_len -ne 0) { $lines = $totalLines.Length - $prev_len; }
+
+        $start_line = $totalLines.Length - $lines;
+
+        # Ensure that we don't go past the beginning of the input
+        if ($start_line -le 0) { $start_line = 0; }
+
+        for ($i = $start_line; $i -lt $totalLines.Length; $i++)
+        {
+          $totalLines[$i];
+        }
+        $prev_len = $totalLines.Length;
+
+        # If we are following the file, sleep the desired interval
+        # else break out of the loop and continue with the next file.
+        if ($follow)
+        {
+          Start-Sleep $sleep;
+        }
+        else
+        {
+          break;
+        }
+      }
+    }
+    elseif ($bytes -ne -1)
+    {
+      # for num bytes option, get the content as a single string 
+      # and substring the last "n" bytes.
+      [string]$content = Get-Content $file -delim [char]0;
+
+      if (($content.Length - $bytes) -lt 0) { $bytes = $content.Length; }
+      $content.Substring($content.Length - $bytes);
+    }
+  }
+}
+
+<# Example
+Get-Tail -filespec $file -lines $lines -bytes $bytes `
+ -follow:$follow -sleep $sleep -quiet:$quiet;
+ #>
+
