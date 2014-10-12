@@ -1,6 +1,4 @@
 function prompt {
-	# this line is used by "z" to update the reference list of folders
-    Update-NavigationHistory $pwd.Path
     # this prompt function chops off the path to fit within 20 characters
     # $loc = Resize-Path (Get-Location)
     $loc = (Get-Location)
@@ -144,7 +142,7 @@ function Set-LocationTo {
 }            
 <#
 .. # goes to parent folder
- .. Foo # goes to sibling folder named â€˜Fooâ€™
+ .. Foo # goes to sibling folder named ‘Foo’
 #>
 
 function GoUp($path) {
@@ -238,11 +236,8 @@ $env:Path += ";$(Split-Path $PROFILE)\Scripts"
 #               Join ";" -append $ENV:PATH -unique
 
 # dot source the directory jumper and file dir/ls colorizer
-# . "$env:HOME\Documents\WindowsPowerShell\posz.ps1"
+. "$env:HOME\Documents\WindowsPowerShell\posz.ps1"
 . "$env:HOME\Documents\WindowsPowerShell\git-dir.ps1"
-
-Import-Module z
-Set-Alias z Search-NavigationHistory
 
 # set the aliases that we like
 Set-Alias -Name cdto -Value Set-LocationTo
@@ -305,10 +300,10 @@ Import-Module DTW.PS.PrettyPrinterV1.psm1
 #>
 
 # Load posh-git example profile
-. "$env:HOME\Documents\Github\posh-git\profile.example.ps1"
+. '$env:HOME\Documents\Github\posh-git\profile.example.ps1'
 
 # dot source the new-command-wrapper
-#. '$env:HOME\Documents\WindowsPowerShell\Scripts\New-CommandWrapper.ps1'
+#. 'C:\Users\jr286576\Documents\WindowsPowerShell\Scripts\New-CommandWrapper.ps1'
 
 Remove-Item alias:dir
 Remove-Item alias:ls
