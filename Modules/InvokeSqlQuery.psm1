@@ -145,8 +145,10 @@ function New-SqlConnection(
         $ci = $ci + "Integrated Security=true;";
     }
     else    {
-        $ci = $ci + "Integrated Security=false;User ID="+$Credential.UserName+";Password="+$Credential.Password.ToString()+";"
-    }
+        $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($Credential.Password)
+		$PlainPassword = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
+        $ci = $ci + "Integrated Security=false;User ID="+$Credential.UserName+";Password="+$PlainPassword+";"
+    }  
     
     
 
@@ -160,14 +162,18 @@ function New-SqlConnection(
     Instantiates and Opens SqlConnection object
 
 .PARAMETER Server
-	Server name
+	Server name
+
 .PARAMETER Database
-	Database name (optional. default value ‘master’)
+	Database name (optional. default value â€˜masterâ€™)
+
 .PARAMETER Credential
-	Credentials for Sql Authentication. If not specified, Windows Authentication will be used
+	Credentials for Sql Authentication. If not specified, Windows Authentication will be used
+
 .PARAMETER ConnectionTimeout
     Connection timeout
-.EXAMPLE    
+
+.EXAMPLE    
     $connection =  New-SqlConnection -Server "."
 
 .EXAMPLE    
@@ -270,37 +276,51 @@ end {
 .DESCRIPTION
     Executes T-SQL Query on the target server. 
     This command accepts either query string or query file or both. 
-    You can pass either –Server (with optional –Credential and/or –Database) or –Connection object.
+    You can pass either â€“Server (with optional â€“Credential and/or â€“Database) or â€“Connection object.
     To create connection object, you can use New-SqlConnection command.
     Invoke-SqlQuery will execute specified query or queries, using GO as query separator and return strongly types results.
-    Invoke-SqlQuery supports parameterized queries. In this case you should pass parameters as a dictionary using –Parameters parameter. 
+    Invoke-SqlQuery supports parameterized queries. In this case you should pass parameters as a dictionary using â€“Parameters parameter. 
 
 
 .PARAMETER  Query
-    T-SQL query text. You can pass multiple queries, separated by GO statement, like in sqlcmd and Sql Server Management Studio.
+    T-SQL query text. You can pass multiple queries, separated by GO statement, like in sqlcmd and Sql Server Management Studio.
+
 .PARAMETER  File
     File (usually .sql) containing one or more T-SQL queries
 
 .PARAMETER  Parameters
-    Parameters for parameterized query
+    Parameters for parameterized query
+
 .PARAMETER Server
-	Server name
+	Server name
+
 .PARAMETER Database
-	Database name (optional. default value ‘master’)
+	Database name (optional. default value â€˜masterâ€™)
+
 .PARAMETER Credential
-	Credentials for Sql Authentication. If not specified, Windows Authentication will be used
+	Credentials for Sql Authentication. If not specified, Windows Authentication will be used
+
 .PARAMETER Connection
-	SqlConnection object. You can Create one using New-SqlConnection command	.PARAMETER SqlTRansaction
-	Sql Tranaction object.PARAMETER ConnectionTimeout
+	SqlConnection object. You can Create one using New-SqlConnection command
+	
+.PARAMETER SqlTRansaction
+	Sql Tranaction object
+
+.PARAMETER ConnectionTimeout
     Connection timeout
-.PARAMETER ExecutionTimeout
+
+.PARAMETER ExecutionTimeout
     Execution timeout
-.PARAMETER IncludeRecordSetIndex 
-	Include recordset index for every record. In case of multiple recordsets, that will help to distinguish between them
+
+.PARAMETER IncludeRecordSetIndex 
+	Include recordset index for every record. In case of multiple recordsets, that will help to distinguish between them
+
 .PARAMETER IncludeRecordsCount
-    Returns number of records at the end of recordset 
+    Returns number of records at the end of recordset 
+
 .PARAMETER UseTransaction
-	Included in Powershell Transaction
+	Included in Powershell Transaction
+
 .EXAMPLE    
     Invoke-SqlQuery -Query "select * from sys.objects where name = 'sysrowsets'" -Server "."
     name                : sysrowsets
